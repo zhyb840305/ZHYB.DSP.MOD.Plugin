@@ -1,0 +1,27 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
+using System.Threading.Tasks;
+
+using BepInEx.Configuration;
+
+using HarmonyLib;
+
+namespace ZHYB.DSP.MOD.Plugin.Patch
+{
+    [HarmonyPatch(typeof(PrefabDesc))]
+    internal class PatchPrefabDesc
+    {
+        [HarmonyPostfix]
+        [HarmonyPatch("ReadPrefab")]
+        public static void PatchReadPrefab(PrefabDesc __instance)
+        {
+            __instance.genEnergyPerTick*=ModConfig.ConfigPrefabDesc.genEnergyPerTick.Value;
+            __instance.powerCoverRadius*=ModConfig.ConfigPrefabDesc.powerCoverRadius.Value;
+            __instance.powerConnectDistance*=ModConfig.ConfigPrefabDesc.powerConnectDistance.Value;
+            __instance.stationMaxItemCount=10000;
+        }
+    }
+}

@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZHYB.DSP.MOD.Plugin", "ZHYB.DSP.MOD.Plugin\ZHYB.DSP.MOD.Plugin.csproj", "{D37A3DD7-B74C-400F-AFFB-8AB0E7441D1B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D37A3DD7-B74C-400F-AFFB-8AB0E7441D1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D37A3DD7-B74C-400F-AFFB-8AB0E7441D1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D37A3DD7-B74C-400F-AFFB-8AB0E7441D1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D37A3DD7-B74C-400F-AFFB-8AB0E7441D1B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {62205307-3F90-42DC-8F5D-3CC607D7F8D2}
+	EndGlobalSection
+EndGlobal
