@@ -13,7 +13,7 @@ namespace ZHYB.DSP.MOD.Plugin
             ConfigPrefabDesc.powerCoverRadius=config.Bind<int>(
                 ConfigPrefabDesc.SECTION,"powerCoverRadius",2,"覆盖范围");
             ConfigPrefabDesc.powerConnectDistance=config.Bind<int>(
-                ConfigPrefabDesc.SECTION,"powerConnectDistance",1,"链接距离");
+                ConfigPrefabDesc.SECTION,"powerConnectDistance",2,"链接距离");
             //戴森球半径
             ConfigDysonSphere.maxOrbitRadius=config.Bind<int>(
                 ConfigDysonSphere.SECTION,"maxOrbitRadius",5,"戴森球最大半径倍数");

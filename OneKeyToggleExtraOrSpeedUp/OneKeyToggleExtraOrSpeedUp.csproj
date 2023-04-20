@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D37A3DD7-B74C-400F-AFFB-8AB0E7441D1B}</ProjectGuid>
+    <ProjectGuid>{52F33769-F179-4119-8D3F-0EFCE96A4BF5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ZHYB.DSP.MOD.Plugin</RootNamespace>
-    <AssemblyName>ZHYB.DSP.MOD.Plugin</AssemblyName>
+    <RootNamespace>OneKeyToggleExtraOrSpeedUp</RootNamespace>
+    <AssemblyName>OneKeyToggleExtraOrSpeedUp</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -59,6 +59,10 @@
       <HintPath>..\..\分析器\UnityEngine.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="UnityEngine.AssetBundleModule">
+      <HintPath>..\..\分析器\UnityEngine.AssetBundleModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>..\..\分析器\UnityEngine.CoreModule.dll</HintPath>
       <Private>False</Private>
@@ -67,8 +71,16 @@
       <HintPath>..\..\分析器\UnityEngine.IMGUIModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="UnityEngine.InputModule">
+      <HintPath>..\..\分析器\UnityEngine.InputModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="UnityEngine.PhysicsModule">
       <HintPath>..\..\分析器\UnityEngine.PhysicsModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TextCoreModule">
+      <HintPath>..\..\分析器\UnityEngine.TextCoreModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.TextRenderingModule">
@@ -85,34 +97,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\MODCommon\ModIds.cs">
-      <Link>Patch\ModIds.cs</Link>
-    </Compile>
-    <Compile Include="..\MODCommon\ModTranslate.cs">
-      <Link>ModTranslate.cs</Link>
-    </Compile>
-    <Compile Include="..\MODCommon\ModUtil.cs">
-      <Link>Patch\ModUtil.cs</Link>
-    </Compile>
-    <Compile Include="ModConfig.cs" />
-    <Compile Include="Patch\ExtenisStationComponent.cs" />
-    <Compile Include="Patch\PatchBuildingParameters.cs" />
-    <Compile Include="Patch\PatchGameSave.cs" />
-    <Compile Include="Patch\PatchPlanetFactory.cs" />
-    <Compile Include="Patch\PatchPlanetTransport.cs" />
-    <Compile Include="Patch\PatchPowerSystem.cs" />
-    <Compile Include="Patch\PatchPrefabDesc.cs" />
-    <Compile Include="Patch\PatchStorageComponent.cs" />
-    <Compile Include="Patch\PatchUIReplicatorWindow.cs" />
-    <Compile Include="Patch\PatchUIStationWindow.cs" />
-    <Compile Include="Patch\Patch_BuildTool_Click.cs" />
-    <Compile Include="Patch\Patch_DysonSphere.cs" />
-    <Compile Include="Patch\Patch_Mecha.cs" />
-    <Compile Include="Patch\Patch_PropertySystem.cs" />
-    <Compile Include="ZHYB.DSP.MOD.Plugin.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Properties\" />
+    <Compile Include="OneKeyToggleExtraOrSpeedUp.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

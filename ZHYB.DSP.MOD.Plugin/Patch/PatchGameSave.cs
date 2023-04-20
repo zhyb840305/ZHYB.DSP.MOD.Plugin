@@ -34,7 +34,7 @@ namespace ZHYB.DSP.MOD.Plugin.Patch
                                 if(component!=null)
                                 {
                                     component.setToggle();
-                                    component.SetItemMax();
+
                                     factory.transport.gameData.galacticTransport.RefreshTraffic(component.gid);
                                 }
                             }

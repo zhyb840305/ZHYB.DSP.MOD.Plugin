@@ -15,7 +15,10 @@ namespace ZHYB.DSP.MOD.Plugin.Patch
         {
             StationComponent component = __result;
             if(component.isVeinCollector)
+            {
+                __instance.factory.factorySystem.minerPool[component.minerId].speed=10*1000;
                 return;
+            }
             if(component.isCollector)
                 return;
             PlanetTransport planetTransport = __instance;
