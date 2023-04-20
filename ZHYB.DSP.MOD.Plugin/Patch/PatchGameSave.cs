@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using HarmonyLib;
+﻿using HarmonyLib;
 
 namespace ZHYB.DSP.MOD.Plugin.Patch
 {
@@ -34,7 +28,7 @@ namespace ZHYB.DSP.MOD.Plugin.Patch
                                 if(component!=null)
                                 {
                                     component.setToggle();
-                                    component.SetItemMax();
+
                                     factory.transport.gameData.galacticTransport.RefreshTraffic(component.gid);
                                 }
                             }

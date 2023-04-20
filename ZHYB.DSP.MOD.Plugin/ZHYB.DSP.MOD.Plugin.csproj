@@ -85,9 +85,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\MODCommon\ModIds.cs">
+      <Link>ModPluginClass\ModIds.cs</Link>
+    </Compile>
+    <Compile Include="..\MODCommon\ModTranslate.cs">
+      <Link>ModTranslate.cs</Link>
+    </Compile>
+    <Compile Include="..\MODCommon\ModUtil.cs">
+      <Link>ModPluginClass\ModUtil.cs</Link>
+    </Compile>
     <Compile Include="ModConfig.cs" />
-    <Compile Include="Patch\ExtenisStationComponent.cs" />
-    <Compile Include="Patch\ItemIds.cs" />
+    <Compile Include="ModPluginClass\ToggleforceAccMode.cs" />
+    <Compile Include="ModPluginClass\ExtenisStationComponent.cs" />
     <Compile Include="Patch\PatchBuildingParameters.cs" />
     <Compile Include="Patch\PatchGameSave.cs" />
     <Compile Include="Patch\PatchPlanetFactory.cs" />
@@ -101,7 +110,6 @@
     <Compile Include="Patch\Patch_DysonSphere.cs" />
     <Compile Include="Patch\Patch_Mecha.cs" />
     <Compile Include="Patch\Patch_PropertySystem.cs" />
-    <Compile Include="TestUI\Util.cs" />
     <Compile Include="ZHYB.DSP.MOD.Plugin.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -110,7 +118,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>taskkill /F /IM DSPGAME.EXE
-set ModPath=C:\Users\zheng\AppData\Roaming\r2modmanPlus-local\DysonSphereProgram\profiles\zhyb\BepInEx\plugins\
+set ModPath=C:\Users\zheng\AppData\Roaming\r2modmanPlus-local\DysonSphereProgram\profiles\Default\BepInEx\plugins\
 del /F/Q %25MODPath%25\$(TargetFileName)
 echo %25MODPath%25\$(TargetFileName)
 copy $(TargetPath) %25MODPath%25\$(TargetFileName)</PostBuildEvent>

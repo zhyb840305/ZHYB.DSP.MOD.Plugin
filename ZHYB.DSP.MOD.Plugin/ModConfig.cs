@@ -8,22 +8,15 @@ namespace ZHYB.DSP.MOD.Plugin
         {
             ModPlugin.logger.LogInfo("ModConfig   Init");
             //发电设备
-            ConfigPrefabDesc.genEnergyPerTick=config.Bind<int>(
-                ConfigPrefabDesc.SECTION,"genEnergyPerTick",100,"发电倍数");
-            ConfigPrefabDesc.powerCoverRadius=config.Bind<int>(
-                ConfigPrefabDesc.SECTION,"powerCoverRadius",2,"覆盖范围");
-            ConfigPrefabDesc.powerConnectDistance=config.Bind<int>(
-                ConfigPrefabDesc.SECTION,"powerConnectDistance",1,"链接距离");
+            ConfigPrefabDesc.genEnergyPerTick=config.Bind<int>(ConfigPrefabDesc.SECTION,"genEnergyPerTick",100,"发电倍数");
+            ConfigPrefabDesc.powerCoverRadius=config.Bind<int>(ConfigPrefabDesc.SECTION,"powerCoverRadius",2,"覆盖范围");
+            ConfigPrefabDesc.powerConnectDistance=config.Bind<int>(ConfigPrefabDesc.SECTION,"powerConnectDistance",2,"链接距离");
             //戴森球半径
-            ConfigDysonSphere.maxOrbitRadius=config.Bind<int>(
-                ConfigDysonSphere.SECTION,"maxOrbitRadius",5,"戴森球最大半径倍数");
+            ConfigDysonSphere.maxOrbitRadius=config.Bind<int>(ConfigDysonSphere.SECTION,"maxOrbitRadius",5,"戴森球最大半径倍数");
             //物流塔
-            ConfigStationComponent.droneAutoReplenish=config.Bind<bool>(
-                ConfigStationComponent.SECTION,"droneAutoReplenish",false,"自动填充Drone");
-            ConfigStationComponent.shipAutoReplenish=config.Bind<bool>(
-                ConfigStationComponent.SECTION,"shipAutoReplenish",false,"自动填充Ship");
-            ConfigStationComponent.warperNecessary=config.Bind<bool>(
-                ConfigStationComponent.SECTION,"warperNecessary",true,"必须Warper");
+            ConfigStationComponent.droneAutoReplenish=config.Bind<bool>(ConfigStationComponent.SECTION,"droneAutoReplenish",false,"自动填充Drone，即自动的把小飞机全部填满");
+            ConfigStationComponent.shipAutoReplenish=config.Bind<bool>(ConfigStationComponent.SECTION,"shipAutoReplenish",false,"自动填充Ship，即自动的把大飞机全部填满");
+            ConfigStationComponent.warperNecessary=config.Bind<bool>(ConfigStationComponent.SECTION,"warperNecessary",true,"必须Warper");
         }
 
         public static class ConfigPrefabDesc

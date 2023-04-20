@@ -1,7 +1,15 @@
-﻿using BepInEx;
+﻿using System.Linq;
+
+using BepInEx;
 using BepInEx.Logging;
 
 using HarmonyLib;
+
+using ModCommon;
+
+
+using UnityEngine;
+
 
 namespace ZHYB.DSP.MOD.Plugin
 {
@@ -12,15 +20,17 @@ namespace ZHYB.DSP.MOD.Plugin
         public const string Plugin_GUID = "ZHYB.DSP.MOD.Plugin";
         public const string Plugin_NAME = "ZHYB.DSP.MOD.Plugin";
         public const string Plugin_Process = "DSPGAME.exe";
-        public const string Plugin_VERSION = "1.0";
+        public const string Plugin_VERSION = "1.0.0";
         public static PlanetFactory factory;
         public static ManualLogSource logger;
+        private Harmony harmony;
 
         public void Start()
         {
             logger=base.Logger;
+            ModTranslate.Init();
             ModConfig.Init(Config);
-            Harmony harmony = new Harmony(Plugin_GUID);
+            harmony=new Harmony(Plugin_GUID);
             harmony.PatchAll();
         }
 
@@ -28,7 +38,21 @@ namespace ZHYB.DSP.MOD.Plugin
         {
             if(GameMain.localPlanet==null)
                 return;
+
+            if(factory!=GameMain.localPlanet.factory)
+                ToggleforceAccMode.forceAccMode=false;
+
             factory=GameMain.localPlanet.factory;
+
+            if(Input.GetKeyDown(KeyCode.L))
+            {
+                ToggleforceAccMode.Toggle_forceAccMode();
+            }
+        }
+
+        public void OnDestroy()
+        {
+            harmony.UnpatchAll();
         }
     }
 }

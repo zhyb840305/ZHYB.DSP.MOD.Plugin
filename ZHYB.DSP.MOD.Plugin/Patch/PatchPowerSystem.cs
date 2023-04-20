@@ -1,7 +1,5 @@
 ﻿using HarmonyLib;
 
-using UnityEngine;
-
 namespace ZHYB.DSP.MOD.Plugin.Patch
 {
     [HarmonyPatch(typeof(PowerSystem))]

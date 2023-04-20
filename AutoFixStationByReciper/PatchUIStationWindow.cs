@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 using HarmonyLib;
 
@@ -7,12 +10,12 @@ using ModCommon;
 
 using UnityEngine;
 
-namespace ZHYB.DSP.MOD.Plugin.Patch
+namespace AutoFixStationByRecipes
 {
     [HarmonyPatch(typeof(UIStationWindow))]
     internal class PatchUIStationWindow
     {
-        private static UIButton btnSelectReciper;
+        private static UIButton btn;
         private static UIStationWindow stationWindow;
 
         [HarmonyPostfix]
@@ -22,21 +25,21 @@ namespace ZHYB.DSP.MOD.Plugin.Patch
             stationWindow=UIRoot.instance.uiGame.stationWindow;
             //navi btn
 
-            btnSelectReciper=Util.MakeSmallTextButton("选择配方",100,0);
-            if(btnSelectReciper!=null)
+            btn=Util.MakeSmallTextButton("选择配方",100,0);
+            if(btn!=null)
             {
-                btnSelectReciper.gameObject.name="ZHYB-DSP-MOD-Plugin-ShowReciper-btn";
-                RectTransform rect = Util.NormalizeRectD(btnSelectReciper.gameObject);
+                btn.gameObject.name="ZHYB-DSP-MOD-Plugin-ShowReciper-btn";
+                RectTransform rect = Util.NormalizeRectD(btn.gameObject);
 
                 rect.SetParent(stationWindow.windowTrans,false);
                 rect.anchoredPosition=new Vector3(400f,-60f);
-                btnSelectReciper.highlighted=true;
+                btn.highlighted=true;
 
-                btnSelectReciper.onClick+=OnReciperSelectButtonClick;
-                btnSelectReciper.tips.tipTitle="ShowReciper";
-                btnSelectReciper.tips.tipText="Auto fix Station By Reciper";
-                btnSelectReciper.tips.corner=8;
-                btnSelectReciper.tips.offset=new Vector2(0f,8f);
+                btn.onClick+=OnReciperSelectButtonClick;
+                btn.tips.tipTitle="ShowReciper";
+                btn.tips.tipText="Auto fix Station By Reciper";
+                btn.tips.corner=8;
+                btn.tips.offset=new Vector2(0f,8f);
             }
         }
 
@@ -45,21 +48,20 @@ namespace ZHYB.DSP.MOD.Plugin.Patch
         public static void Patch_OnOpen()
         {
             var stationComponent= stationWindow.transport.stationPool[stationWindow.stationId];
-            btnSelectReciper.gameObject.SetActive(!stationComponent.isVeinCollector);
+            btn.gameObject.SetActive(!stationComponent.isVeinCollector);
         }
 
         private static void OnRecipePickerReturn(RecipeProto recipeProto)
         {
             if(recipeProto==null)
                 return;
-            StationComponent component=ModPlugin.factory.transport.stationPool[UIRoot.instance.uiGame.stationWindow.stationId];
+            StationComponent component=AutoFixStationByReciper.AutoFixStationByReciper.factory.transport.stationPool[UIRoot.instance.uiGame.stationWindow.stationId];
             if(component==null)
                 return;
-
             int idx  ;
             for(idx=0;idx<component.storage.Length;idx++)
             {
-                ModPlugin.factory.transport.SetStationStorage(
+                AutoFixStationByReciper.AutoFixStationByReciper.factory.transport.SetStationStorage(
                               component.id,idx,
                               0,100,
                               ELogisticStorage.Demand,ELogisticStorage.None,
@@ -105,13 +107,11 @@ namespace ZHYB.DSP.MOD.Plugin.Patch
                     keyValuePairs.Add(itemid,tmp);
                 }
             }
-
-
             idx=0;
             foreach(var keyValue in keyValuePairs)
             {
                 tmp=keyValue.Value;
-                ModPlugin.factory.transport.SetStationStorage(
+                AutoFixStationByReciper.AutoFixStationByReciper.factory.transport.SetStationStorage(
                     component.id,idx++,
                     keyValue.Key,int.MaxValue,
                     tmp.itemCount==0 ? ELogisticStorage.Supply : ( tmp.itemCount>tmp.resultCount ? ELogisticStorage.Demand : ELogisticStorage.Supply ),
@@ -121,7 +121,7 @@ namespace ZHYB.DSP.MOD.Plugin.Patch
 
             if(component.isStellar&&( component.storage[component.storage.Length-1].itemId==ItemIds.SpaceWarper||component.storage[component.storage.Length-1].itemId==0 ))
             {
-                ModPlugin.factory.transport.SetStationStorage(
+                AutoFixStationByReciper.AutoFixStationByReciper.factory.transport.SetStationStorage(
                        component.id,component.storage.Length-1,
                        ItemIds.SpaceWarper,100,
                        ELogisticStorage.Demand,ELogisticStorage.None,

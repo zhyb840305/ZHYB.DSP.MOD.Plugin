@@ -16,7 +16,6 @@ namespace ZHYB.DSP.MOD.Plugin.Patch
             if(component==null)
                 return;
             component.setToggle();
-            component.SetItemMax();
         }
     }
 }

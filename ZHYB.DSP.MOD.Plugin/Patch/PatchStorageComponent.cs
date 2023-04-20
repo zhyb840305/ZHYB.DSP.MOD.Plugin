@@ -2,6 +2,8 @@
 
 using HarmonyLib;
 
+using ModCommon;
+
 namespace ZHYB.DSP.MOD.Plugin.Patch
 {
     [HarmonyPatch(typeof(StorageComponent),"GetItemCount")]
@@ -11,7 +13,7 @@ namespace ZHYB.DSP.MOD.Plugin.Patch
         [HarmonyPatch("GetItemCount",new Type[] { typeof(int) })]
         private static void Postfix(int itemId,ref int __result)
         {
-            if(itemId!=ItemIds.FOUNDATION_ITEM_ID)
+            if(itemId!=ItemIds.Foundation)
                 return;
             __result=1000;
         }

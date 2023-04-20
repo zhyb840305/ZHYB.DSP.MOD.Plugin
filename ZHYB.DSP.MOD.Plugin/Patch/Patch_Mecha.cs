@@ -40,8 +40,11 @@ namespace ZHYB.DSP.MOD.Plugin
 
             __instance.corePowerGen=1*1000*1000*1000;
             __instance.player.SetSandCount(int.MaxValue);
-            GameMain.history.localStationExtraStorage=45000;
-            GameMain.history.remoteStationExtraStorage=180000;
+            GameMain.history.localStationExtraStorage=40000;
+            GameMain.history.remoteStationExtraStorage=190000;
+            GameMain.history.inserterStackCount=16;
+            GameMain.history.stationPilerLevel=16;
+
 
             //
             if(StackSizeUpdated)
