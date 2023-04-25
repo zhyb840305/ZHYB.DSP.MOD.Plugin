@@ -1,7 +1,5 @@
 ﻿using ABN;
 
-using HarmonyLib;
-
 namespace ZHYB.DSP.MOD.Plugin
 {
     [HarmonyPatch(typeof(GameAbnormalityData_0925))]
@@ -37,18 +35,17 @@ namespace ZHYB.DSP.MOD.Plugin
             __instance.warpStorage.grids[0].stackSize=int.MaxValue;
             __instance.droneSpeed=150f;
             __instance.droneCount=256;
-
             __instance.corePowerGen=1*1000*1000*1000;
             __instance.player.SetSandCount(int.MaxValue);
+
             GameMain.history.localStationExtraStorage=40000;
             GameMain.history.remoteStationExtraStorage=190000;
             GameMain.history.inserterStackCount=16;
             GameMain.history.stationPilerLevel=16;
 
-
-            //
             if(StackSizeUpdated)
                 return;
+
             foreach(ItemProto data in LDB.items.dataArray)
             {
                 int num = data.StackSize * 10000;

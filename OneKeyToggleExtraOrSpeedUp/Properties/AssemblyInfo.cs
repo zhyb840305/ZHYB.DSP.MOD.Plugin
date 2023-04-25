@@ -2,11 +2,11 @@
 using System.Runtime.InteropServices;
 
 // 有关程序集的一般信息由以下 控制。更改这些特性值可修改 与程序集关联的信息。
-[assembly: AssemblyTitle("AutoFixStationByReciper")]
+[assembly: AssemblyTitle("OneKeyToggleExtraOrSpeedUp")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("AutoFixStationByReciper")]
+[assembly: AssemblyProduct("OneKeyToggleExtraOrSpeedUp")]
 [assembly: AssemblyCopyright("Copyright ©  2023")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -17,7 +17,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // 如果此项目向 COM 公开，则下列 GUID 用于类型库的 ID
-[assembly: Guid("019a4227-d4d6-47b2-a252-225f4588c948")]
+[assembly: Guid("52f33769-f179-4119-8d3f-0efce96a4bf5")]
 
 // 程序集的版本信息由下列四个值组成:
 //

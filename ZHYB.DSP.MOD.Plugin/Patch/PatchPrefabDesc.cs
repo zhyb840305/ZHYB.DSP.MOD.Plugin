@@ -1,6 +1,4 @@
-﻿using HarmonyLib;
-
-namespace ZHYB.DSP.MOD.Plugin.Patch
+﻿namespace ZHYB.DSP.MOD.Plugin.Patch
 {
     [HarmonyPatch(typeof(PrefabDesc))]
     internal class PatchPrefabDesc

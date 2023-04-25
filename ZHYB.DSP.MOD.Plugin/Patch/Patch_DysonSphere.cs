@@ -1,6 +1,4 @@
-﻿using HarmonyLib;
-
-namespace ZHYB.DSP.MOD.Plugin
+﻿namespace ZHYB.DSP.MOD.Plugin
 {
     [HarmonyPatch(typeof(DysonSphere))]
     public static class Patch_DysonSphere

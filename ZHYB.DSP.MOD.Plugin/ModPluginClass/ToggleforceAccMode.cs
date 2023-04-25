@@ -1,19 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using JetBrains.Annotations;
-
-using NGPT;
+﻿using System.Linq;
 
 namespace ZHYB.DSP.MOD.Plugin
 {
     internal static class ToggleforceAccMode
     {
-        public static bool forceAccMode=false;
-        public static  PlanetFactory factory=null;
+        public static bool forceAccMode = false;
+        public static PlanetFactory factory = null;
+
         public static void Toggle_forceAccMode()
         {
             factory=ModPlugin.factory;

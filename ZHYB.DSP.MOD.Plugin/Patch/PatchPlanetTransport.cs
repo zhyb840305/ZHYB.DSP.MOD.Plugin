@@ -1,6 +1,4 @@
-﻿using HarmonyLib;
-
-namespace ZHYB.DSP.MOD.Plugin.Patch
+﻿namespace ZHYB.DSP.MOD.Plugin.Patch
 {
     [HarmonyPatch(typeof(PlanetTransport))]
     internal class PatchPlanetTransport
@@ -19,7 +17,7 @@ namespace ZHYB.DSP.MOD.Plugin.Patch
                 return;
             PlanetTransport planetTransport = __instance;
             PrefabDesc prefabDesc = ((ProtoSet<ItemProto>) LDB.items).Select((int) planetTransport.factory.entityPool[component.entityId].protoId).prefabDesc;
-            //
+
             component.setToggle();
             component.AddShipDrone(prefabDesc);
             component.AddWarperRequestToLastSlot();

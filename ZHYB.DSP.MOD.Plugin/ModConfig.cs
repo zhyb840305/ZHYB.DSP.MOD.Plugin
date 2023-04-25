@@ -1,6 +1,4 @@
-﻿using BepInEx.Configuration;
-
-namespace ZHYB.DSP.MOD.Plugin
+﻿namespace ZHYB.DSP.MOD.Plugin
 {
     public static class ModConfig
     {

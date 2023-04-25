@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 
-using ModCommon;
-
 namespace ZHYB.DSP.MOD.Plugin.Patch
 {
     public static class ExtenisStationComponent
@@ -62,7 +60,7 @@ namespace ZHYB.DSP.MOD.Plugin.Patch
 
         public static void SetCharge(this StationComponent component,PrefabDesc prefabDesc)
         {
-            ModPlugin.factory.powerSystem.consumerPool[component.pcId].workEnergyPerTick=prefabDesc.workEnergyPerTick*5;
+            ModPlugin.factory.powerSystem.consumerPool[component.pcId].workEnergyPerTick=prefabDesc.workEnergyPerTick*50;
         }
 
         public static void setToggle(this StationComponent component)
