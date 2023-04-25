@@ -1,7 +1,5 @@
 ﻿using ABN;
 
-using HarmonyLib;
-
 namespace ZHYB.DSP.MOD.Plugin
 {
     [HarmonyPatch(typeof(GameAbnormalityData_0925))]
@@ -45,10 +43,9 @@ namespace ZHYB.DSP.MOD.Plugin
             GameMain.history.inserterStackCount=16;
             GameMain.history.stationPilerLevel=16;
 
-
-            //
             if(StackSizeUpdated)
                 return;
+
             foreach(ItemProto data in LDB.items.dataArray)
             {
                 int num = data.StackSize * 10000;

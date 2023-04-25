@@ -1,6 +1,4 @@
-﻿using HarmonyLib;
-
-namespace ZHYB.DSP.MOD.Plugin
+﻿namespace ZHYB.DSP.MOD.Plugin
 {
     [HarmonyPatch(typeof(PropertySystem))]
     public class Patch_PropertySystem

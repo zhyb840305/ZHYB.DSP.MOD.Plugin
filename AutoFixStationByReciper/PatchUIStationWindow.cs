@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using HarmonyLib;
 
@@ -51,6 +48,22 @@ namespace AutoFixStationByRecipes
             btn.gameObject.SetActive(!stationComponent.isVeinCollector);
         }
 
+        private struct CountItemResult
+        {
+            public int itemCount;
+            public int resultCount;
+
+            public ELogisticStorage GetlocalLogic()
+            {
+                return itemCount==0 ? ELogisticStorage.Supply : ( itemCount>resultCount ? ELogisticStorage.Demand : ELogisticStorage.Supply );
+            }
+
+            public ELogisticStorage GetRemoteLogic()
+            {
+                return itemCount==0 ? ELogisticStorage.Supply : ( itemCount>resultCount ? ELogisticStorage.Demand : ELogisticStorage.Supply );
+            }
+        }
+
         private static void OnRecipePickerReturn(RecipeProto recipeProto)
         {
             if(recipeProto==null)
@@ -61,11 +74,7 @@ namespace AutoFixStationByRecipes
             int idx  ;
             for(idx=0;idx<component.storage.Length;idx++)
             {
-                AutoFixStationByReciper.AutoFixStationByReciper.factory.transport.SetStationStorage(
-                              component.id,idx,
-                              0,100,
-                              ELogisticStorage.Demand,ELogisticStorage.None,
-                              GameMain.mainPlayer);
+                AutoFixStationByReciper.AutoFixStationByReciper.factory.transport.SetStationStorage(component.id,idx,0,100,ELogisticStorage.Demand,ELogisticStorage.None,GameMain.mainPlayer);
             }
 
             Dictionary<int,CountItemResult> keyValuePairs=new Dictionary<int, CountItemResult>();
@@ -114,8 +123,8 @@ namespace AutoFixStationByRecipes
                 AutoFixStationByReciper.AutoFixStationByReciper.factory.transport.SetStationStorage(
                     component.id,idx++,
                     keyValue.Key,int.MaxValue,
-                    tmp.itemCount==0 ? ELogisticStorage.Supply : ( tmp.itemCount>tmp.resultCount ? ELogisticStorage.Demand : ELogisticStorage.Supply ),
-                    tmp.itemCount==0 ? ELogisticStorage.Supply : ( tmp.itemCount>tmp.resultCount ? ELogisticStorage.Demand : ELogisticStorage.Supply ),
+                    tmp.GetlocalLogic(),
+                    tmp.GetRemoteLogic(),
                     GameMain.mainPlayer);
             }
 
@@ -140,12 +149,6 @@ namespace AutoFixStationByRecipes
                 UIRecipePicker.Popup(UIRoot.instance.uiGame.stationWindow.windowTrans.anchoredPosition+new Vector2(-300f,-135f),
                 OnRecipePickerReturn,ERecipeType.None);
             }
-        }
-
-        private struct CountItemResult
-        {
-            public int itemCount;
-            public int resultCount;
         }
     }
 }

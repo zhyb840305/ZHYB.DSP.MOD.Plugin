@@ -1,12 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-using HarmonyLib;
-
-using ModCommon;
-
-using UnityEngine;
-
 namespace ZHYB.DSP.MOD.Plugin.Patch
 {
     [HarmonyPatch(typeof(UIStationWindow))]
@@ -106,7 +100,6 @@ namespace ZHYB.DSP.MOD.Plugin.Patch
                 }
             }
 
-
             idx=0;
             foreach(var keyValue in keyValuePairs)
             {
@@ -114,8 +107,8 @@ namespace ZHYB.DSP.MOD.Plugin.Patch
                 ModPlugin.factory.transport.SetStationStorage(
                     component.id,idx++,
                     keyValue.Key,int.MaxValue,
-                    tmp.itemCount==0 ? ELogisticStorage.Supply : ( tmp.itemCount>tmp.resultCount ? ELogisticStorage.Demand : ELogisticStorage.Supply ),
-                    tmp.itemCount==0 ? ELogisticStorage.Supply : ( tmp.itemCount>tmp.resultCount ? ELogisticStorage.Demand : ELogisticStorage.Supply ),
+                    tmp.GetlocalLogic(),
+                     tmp.GetRemoteLogic(),
                     GameMain.mainPlayer);
             }
 
@@ -146,6 +139,16 @@ namespace ZHYB.DSP.MOD.Plugin.Patch
         {
             public int itemCount;
             public int resultCount;
+
+            public ELogisticStorage GetlocalLogic()
+            {
+                return itemCount==0 ? ELogisticStorage.Supply : ( itemCount>resultCount ? ELogisticStorage.Demand : ELogisticStorage.Supply );
+            }
+
+            public ELogisticStorage GetRemoteLogic()
+            {
+                return itemCount==0 ? ELogisticStorage.Supply : ( itemCount>resultCount ? ELogisticStorage.Demand : ELogisticStorage.Supply );
+            }
         }
     }
 }

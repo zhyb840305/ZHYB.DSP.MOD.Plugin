@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 
-using ModCommon;
-
 namespace ZHYB.DSP.MOD.Plugin.Patch
 {
     public static class ExtenisStationComponent
