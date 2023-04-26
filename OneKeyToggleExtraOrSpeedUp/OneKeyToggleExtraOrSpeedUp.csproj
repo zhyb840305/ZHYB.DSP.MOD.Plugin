@@ -104,13 +104,10 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>
-			taskkill /F /IM DSPGAME.EXE
-			set ModPath=C:\Users\zheng\AppData\Roaming\r2modmanPlus-local\DysonSphereProgram\profiles\Default\BepInEx\plugins\
-			del /F/Q %25MODPath%25\$(TargetFileName)
-			echo %25MODPath%25\$(TargetFileName)
-			copy $(TargetPath) %25MODPath%25\$(TargetFileName)
-		</PostBuildEvent>
+    <PostBuildEvent>taskkill /F /IM DSPGAME.EXE
+set ModPath=C:\Users\zheng\AppData\Roaming\r2modmanPlus-local\DysonSphereProgram\profiles\Default\BepInEx\plugins\
+del /F/Q %25MODPath%25\$(TargetFileName)
+copy $(TargetPath) %25MODPath%25\$(TargetFileName)</PostBuildEvent>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
 </Project>
