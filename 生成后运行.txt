@@ -1,0 +1,5 @@
+taskkill /F /IM DSPGAME.EXE
+set ModPath=C:\Users\zheng\AppData\Roaming\r2modmanPlus-local\DysonSphereProgram\profiles\Default\BepInEx\plugins\
+del /F/Q %MODPath%\$(TargetFileName)
+copy $(TargetPath) %MODPath%\$(TargetFileName)
+		
