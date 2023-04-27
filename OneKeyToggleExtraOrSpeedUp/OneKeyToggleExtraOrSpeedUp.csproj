@@ -99,6 +99,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\MODCommon\GlobalUsing.cs">
+      <Link>GlobalUsing.cs</Link>
+    </Compile>
+    <Compile Include="..\MODCommon\ModIds.cs">
+      <Link>ModIds.cs</Link>
+    </Compile>
+    <Compile Include="..\MODCommon\ModTranslate.cs">
+      <Link>ModTranslate.cs</Link>
+    </Compile>
+    <Compile Include="..\MODCommon\ModUtil.cs">
+      <Link>ModUtil.cs</Link>
+    </Compile>
+    <Compile Include="..\ZHYB.DSP.MOD.Plugin\ModPluginClass\ToggleforceAccMode.cs">
+      <Link>ToggleforceAccMode.cs</Link>
+    </Compile>
     <Compile Include="OneKeyToggleExtraOrSpeedUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

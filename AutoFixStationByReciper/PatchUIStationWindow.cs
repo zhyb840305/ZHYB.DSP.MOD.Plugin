@@ -1,13 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-using HarmonyLib;
-
-using ModCommon;
-
-using UnityEngine;
-
-namespace AutoFixStationByRecipes
+﻿namespace AutoFixStationByRecipes
 {
     [HarmonyPatch(typeof(UIStationWindow))]
     internal class PatchUIStationWindow

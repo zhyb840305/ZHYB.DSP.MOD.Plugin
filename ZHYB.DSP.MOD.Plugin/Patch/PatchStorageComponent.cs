@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ZHYB.DSP.MOD.Plugin.Patch
+﻿namespace ZHYB.DSP.MOD.Plugin.Patch
 {
     [HarmonyPatch(typeof(StorageComponent),"GetItemCount")]
     internal class PatchGetItemCount

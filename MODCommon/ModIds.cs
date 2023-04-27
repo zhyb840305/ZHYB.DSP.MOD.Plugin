@@ -1,5 +1,12 @@
 ﻿namespace ModCommon
 {
+    public static class ModCommon
+    {
+        public static PlanetFactory factory;
+        public static ManualLogSource logger;
+        public static Harmony harmony;
+    }
+
     public static class ItemIds
     {
         public const int IronOre = 1001;
