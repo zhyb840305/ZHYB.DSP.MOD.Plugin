@@ -10,7 +10,11 @@
             __instance.genEnergyPerTick*=ModConfig.ConfigPrefabDesc.genEnergyPerTick.Value;
             __instance.powerCoverRadius*=ModConfig.ConfigPrefabDesc.powerCoverRadius.Value;
             __instance.powerConnectDistance*=ModConfig.ConfigPrefabDesc.powerConnectDistance.Value;
+
             __instance.stationMaxItemCount=10000;
+            __instance.stationMaxEnergyAcc*=100;
+            __instance.workEnergyPerTick*=100;
+
         }
     }
 }
