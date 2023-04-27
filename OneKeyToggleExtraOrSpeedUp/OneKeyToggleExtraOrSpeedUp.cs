@@ -8,23 +8,20 @@
         public const string Plugin_NAME = "ZHYB.DSP.MOD.OneKeyToggleExtraOrSpeedUp";
         public const string Plugin_Process = "DSPGAME.exe";
         public const string Plugin_VERSION = "1.0.0";
-        public static PlanetFactory factory;
-        public static ManualLogSource logger;
-        private Harmony harmony;
 
         public void Start()
         {
-            logger=base.Logger;
-            harmony=new Harmony(Plugin_GUID);
-            harmony.PatchAll();
+            ModCommon.ModCommon.logger=base.Logger;
+            ModCommon.ModCommon.harmony=new Harmony(Plugin_GUID);
+            ModCommon.ModCommon.harmony.PatchAll();
         }
 
         public void Update()
         {
             if(GameMain.localPlanet==null)
                 return;
-            factory=GameMain.localPlanet.factory;
-            if(factory==null)
+            ModCommon.ModCommon.factory=GameMain.localPlanet.factory;
+            if(ModCommon.ModCommon.factory==null)
                 return;
             KeyboardShortcut shortcut=new KeyboardShortcut(KeyCode.L,KeyCode.LeftControl );
             if(shortcut.IsDown())
@@ -35,7 +32,7 @@
 
         public void OnDestroy()
         {
-            harmony.UnpatchAll();
+            ModCommon.ModCommon.harmony.UnpatchAll();
         }
     }
 }
