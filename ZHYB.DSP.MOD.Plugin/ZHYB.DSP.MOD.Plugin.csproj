@@ -100,6 +100,7 @@
     <Compile Include="ModConfig.cs" />
     <Compile Include="ModPluginClass\ToggleforceAccMode.cs" />
     <Compile Include="ModPluginClass\ExtenisStationComponent.cs" />
+    <Compile Include="Patch\Patch_Minier.cs" />
     <Compile Include="Patch\PatchBuildingParameters.cs" />
     <Compile Include="Patch\PatchGameSave.cs" />
     <Compile Include="Patch\PatchPlanetFactory.cs" />

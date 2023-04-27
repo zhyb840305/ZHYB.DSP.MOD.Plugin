@@ -15,6 +15,9 @@
             ConfigStationComponent.droneAutoReplenish=config.Bind<bool>(ConfigStationComponent.SECTION,"droneAutoReplenish",false,"自动填充Drone，即自动的把小飞机全部填满");
             ConfigStationComponent.shipAutoReplenish=config.Bind<bool>(ConfigStationComponent.SECTION,"shipAutoReplenish",false,"自动填充Ship，即自动的把大飞机全部填满");
             ConfigStationComponent.warperNecessary=config.Bind<bool>(ConfigStationComponent.SECTION,"warperNecessary",true,"必须Warper");
+            //矿物显示
+            ConfigShowMiner.DisplayAsPerSecond=config.Bind<bool>(ConfigShowMiner.SECTION,
+                "DisplayAsPerSecond",true,"矿物显示按秒计算");
         }
 
         public static class ConfigPrefabDesc
@@ -37,6 +40,12 @@
         {
             public static string SECTION = "戴森球";
             public static ConfigEntry<int> maxOrbitRadius;
+        }
+
+        public static class ConfigShowMiner
+        {
+            public static string SECTION = "矿物产出显示";
+            public static ConfigEntry<bool> DisplayAsPerSecond;
         }
     }
 }
