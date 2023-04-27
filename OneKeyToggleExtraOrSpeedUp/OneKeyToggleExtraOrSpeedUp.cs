@@ -1,13 +1,4 @@
-﻿using System.Linq;
-
-using BepInEx;
-using BepInEx.Logging;
-
-using HarmonyLib;
-
-using UnityEngine;
-
-namespace OneKeyToggleExtraOrSpeedUp
+﻿namespace OneKeyToggleExtraOrSpeedUp
 {
     [BepInPlugin(Plugin_GUID,Plugin_NAME,Plugin_VERSION)]
     [BepInProcess(Plugin_Process)]
@@ -20,14 +11,12 @@ namespace OneKeyToggleExtraOrSpeedUp
         public static PlanetFactory factory;
         public static ManualLogSource logger;
         private Harmony harmony;
-        private static bool forceAccMode;
 
         public void Start()
         {
             logger=base.Logger;
             harmony=new Harmony(Plugin_GUID);
             harmony.PatchAll();
-            forceAccMode=false;
         }
 
         public void Update()
@@ -37,15 +26,10 @@ namespace OneKeyToggleExtraOrSpeedUp
             factory=GameMain.localPlanet.factory;
             if(factory==null)
                 return;
-            if(Input.GetKeyDown(KeyCode.L))
+            KeyboardShortcut shortcut=new KeyboardShortcut(KeyCode.L,KeyCode.LeftControl );
+            if(shortcut.IsDown())
             {
-                forceAccMode=!forceAccMode;
-                for(var idx = 0;idx<factory.factorySystem.assemblerPool.Count();idx++)
-                    if(factory.factorySystem.assemblerPool[idx].id!=0)
-                    {
-                        if(factory.factorySystem.assemblerPool[idx].productive)
-                            factory.factorySystem.assemblerPool[idx].forceAccMode=forceAccMode;
-                    }
+                ZHYB.DSP.MOD.Plugin.ToggleforceAccMode.Toggle_forceAccMode();
             }
         }
 

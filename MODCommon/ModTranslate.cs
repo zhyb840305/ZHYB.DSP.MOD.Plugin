@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace ModCommon
+﻿namespace ModCommon
 {
     public static class ModTranslate
     {

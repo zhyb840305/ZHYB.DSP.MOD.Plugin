@@ -1,12 +1,5 @@
 ﻿using AutoFixStationByRecipes;
 
-using BepInEx;
-using BepInEx.Logging;
-
-using HarmonyLib;
-
-using ModCommon;
-
 namespace AutoFixStationByReciper
 {
     [BepInPlugin(Plugin_GUID,Plugin_NAME,Plugin_VERSION)]

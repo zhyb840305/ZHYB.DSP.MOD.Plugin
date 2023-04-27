@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace ZHYB.DSP.MOD.Plugin.Patch
+﻿namespace ZHYB.DSP.MOD.Plugin.Patch
 {
     public static class ExtenisStationComponent
     {

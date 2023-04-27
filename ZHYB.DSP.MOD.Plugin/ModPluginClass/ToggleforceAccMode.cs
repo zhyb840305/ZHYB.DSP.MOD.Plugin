@@ -1,6 +1,4 @@
-﻿using System.Linq;
-
-namespace ZHYB.DSP.MOD.Plugin
+﻿namespace ZHYB.DSP.MOD.Plugin
 {
     internal static class ToggleforceAccMode
     {
@@ -9,7 +7,13 @@ namespace ZHYB.DSP.MOD.Plugin
 
         public static void Toggle_forceAccMode()
         {
-            factory=ModPlugin.factory;
+            if(GameMain.localPlanet==null)
+                return;
+
+            if(factory!=GameMain.localPlanet.factory)
+                ToggleforceAccMode.forceAccMode=false;
+
+            factory=GameMain.localPlanet.factory;
             if(factory==null)
                 return;
             forceAccMode=!forceAccMode;
