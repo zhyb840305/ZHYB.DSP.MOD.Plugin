@@ -26,7 +26,7 @@
                                 if(component!=null)
                                 {
                                     component.setToggle();
-
+                                    component.energy=component.energyMax;
                                     factory.transport.gameData.galacticTransport.RefreshTraffic(component.gid);
                                 }
                             }

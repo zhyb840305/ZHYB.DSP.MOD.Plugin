@@ -56,7 +56,8 @@
 
         public static void SetCharge(this StationComponent component,PrefabDesc prefabDesc)
         {
-            ModPlugin.factory.powerSystem.consumerPool[component.pcId].workEnergyPerTick=prefabDesc.workEnergyPerTick*50;
+            ModPlugin.factory.powerSystem.consumerPool[component.pcId].workEnergyPerTick=prefabDesc.workEnergyPerTick*5;
+            component.energy=component.energyMax;
         }
 
         public static void setToggle(this StationComponent component)
