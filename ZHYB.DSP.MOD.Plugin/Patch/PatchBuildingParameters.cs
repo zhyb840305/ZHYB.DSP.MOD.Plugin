@@ -1,4 +1,6 @@
-﻿namespace ZHYB.DSP.MOD.Plugin.Patch
+﻿using ModClass;
+
+namespace Patch
 {
     [HarmonyPatch(typeof(BuildingParameters))]
     internal class PatchBuildingParameters

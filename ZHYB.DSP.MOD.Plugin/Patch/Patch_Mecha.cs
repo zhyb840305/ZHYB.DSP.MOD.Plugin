@@ -1,6 +1,6 @@
 ﻿using ABN;
 
-namespace ZHYB.DSP.MOD.Plugin
+namespace Patch
 {
     [HarmonyPatch(typeof(GameAbnormalityData_0925))]
     internal class Patch_GameAbnormalityData_0925

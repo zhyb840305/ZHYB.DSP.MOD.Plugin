@@ -1,4 +1,4 @@
-﻿namespace ZHYB.DSP.MOD.Plugin
+﻿namespace Patch
 {
     [HarmonyPatch(typeof(BuildTool_Click))]
     public static class Patch_BuildTool_Click

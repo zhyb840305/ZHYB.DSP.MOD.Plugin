@@ -8,9 +8,8 @@
         public const string Plugin_NAME = "ZHYB.DSP.MOD.Plugin";
         public const string Plugin_Process = "DSPGAME.exe";
         public const string Plugin_VERSION = "1.0.0";
-        public static PlanetFactory factory;
         public static ManualLogSource logger;
-        private Harmony harmony;
+        public static Harmony harmony;
 
         public void Start()
         {
@@ -25,11 +24,6 @@
         {
             if(GameMain.localPlanet==null)
                 return;
-
-            if(factory!=GameMain.localPlanet.factory)
-                ToggleforceAccMode.forceAccMode=false;
-
-            factory=GameMain.localPlanet.factory;
 
             if(Input.GetKeyDown(KeyCode.L))
             {

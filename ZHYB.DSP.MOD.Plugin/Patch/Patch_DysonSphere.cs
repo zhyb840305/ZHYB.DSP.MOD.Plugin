@@ -1,4 +1,4 @@
-﻿namespace ZHYB.DSP.MOD.Plugin
+﻿namespace Patch
 {
     [HarmonyPatch(typeof(DysonSphere))]
     public static class Patch_DysonSphere

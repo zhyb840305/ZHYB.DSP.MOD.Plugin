@@ -1,4 +1,4 @@
-﻿namespace ZHYB.DSP.MOD.Plugin.Patch
+﻿namespace Patch
 {
     [HarmonyPatch(typeof(UIStationWindow))]
     internal class PatchUIStationWindow
@@ -43,14 +43,14 @@
         {
             if(recipeProto==null)
                 return;
-            StationComponent component=ModPlugin.factory.transport.stationPool[UIRoot.instance.uiGame.stationWindow.stationId];
+            StationComponent component= GameMain.localPlanet.factory.transport.stationPool[UIRoot.instance.uiGame.stationWindow.stationId];
             if(component==null)
                 return;
 
             int idx  ;
             for(idx=0;idx<component.storage.Length;idx++)
             {
-                ModPlugin.factory.transport.SetStationStorage(
+                GameMain.localPlanet.factory.transport.SetStationStorage(
                               component.id,idx,
                               0,100,
                               ELogisticStorage.Demand,ELogisticStorage.None,
@@ -101,7 +101,7 @@
             foreach(var keyValue in keyValuePairs)
             {
                 tmp=keyValue.Value;
-                ModPlugin.factory.transport.SetStationStorage(
+                GameMain.localPlanet.factory.transport.SetStationStorage(
                     component.id,idx++,
                     keyValue.Key,int.MaxValue,
                     tmp.GetlocalLogic(),
@@ -111,7 +111,7 @@
 
             if(component.isStellar&&( component.storage[component.storage.Length-1].itemId==ItemIds.SpaceWarper||component.storage[component.storage.Length-1].itemId==0 ))
             {
-                ModPlugin.factory.transport.SetStationStorage(
+                GameMain.localPlanet.factory.transport.SetStationStorage(
                        component.id,component.storage.Length-1,
                        ItemIds.SpaceWarper,100,
                        ELogisticStorage.Demand,ELogisticStorage.None,

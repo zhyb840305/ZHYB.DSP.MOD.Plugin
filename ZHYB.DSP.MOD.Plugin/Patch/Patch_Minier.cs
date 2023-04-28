@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ZHYB.DSP.MOD.Plugin.Patch
+using ZHYB.DSP.MOD.Plugin;
+
+namespace Patch
 {
     [HarmonyPatch(typeof(UIMinerWindow))]
     internal class Patch_UIMinerWindow

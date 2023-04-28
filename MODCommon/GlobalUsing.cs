@@ -7,8 +7,8 @@ global using BepInEx.Configuration;
 global using BepInEx.Logging;
 
 global using HarmonyLib;
-
 global using ModCommon;
+global using ModClass;
 
 global using UnityEngine;
 global using UnityEngine.UI;
