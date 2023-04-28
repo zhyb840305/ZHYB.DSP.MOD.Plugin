@@ -1,4 +1,4 @@
-﻿namespace ZHYB.DSP.MOD.Plugin.Patch
+﻿namespace ModClass
 {
     public static class ExtenisStationComponent
     {
@@ -43,20 +43,20 @@
         {
             if(!component.isStellar)
                 return;
-            ModPlugin.factory.transport.SetStationStorage(
-                component.id,
-                component.storage.Length-1,
-                ItemIds.SpaceWarper,
-                100,
-                ELogisticStorage.Demand,
-                ELogisticStorage.None,
-                GameMain.mainPlayer);
-            ModPlugin.factory.transport.gameData.galacticTransport.RefreshTraffic(component.gid);
+            GameMain.localPlanet.factory.transport.SetStationStorage(
+               component.id,
+               component.storage.Length-1,
+               ItemIds.SpaceWarper,
+               100,
+               ELogisticStorage.Demand,
+               ELogisticStorage.None,
+               GameMain.mainPlayer);
+            GameMain.localPlanet.factory.transport.gameData.galacticTransport.RefreshTraffic(component.gid);
         }
 
         public static void SetCharge(this StationComponent component,PrefabDesc prefabDesc)
         {
-            ModPlugin.factory.powerSystem.consumerPool[component.pcId].workEnergyPerTick=prefabDesc.workEnergyPerTick*5;
+            GameMain.localPlanet.factory.powerSystem.consumerPool[component.pcId].workEnergyPerTick=prefabDesc.workEnergyPerTick*5;
             component.energy=component.energyMax;
         }
 

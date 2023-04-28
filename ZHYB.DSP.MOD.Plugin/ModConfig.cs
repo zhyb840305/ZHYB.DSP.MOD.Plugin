@@ -1,10 +1,9 @@
-﻿namespace ZHYB.DSP.MOD.Plugin
+﻿namespace ModCommon
 {
     public static class ModConfig
     {
         internal static void Init(ConfigFile config)
         {
-            ModPlugin.logger.LogInfo("ModConfig   Init");
             //发电设备
             ConfigPrefabDesc.genEnergyPerTick=config.Bind<int>(ConfigPrefabDesc.SECTION,"genEnergyPerTick",100,"发电倍数");
             ConfigPrefabDesc.powerCoverRadius=config.Bind<int>(ConfigPrefabDesc.SECTION,"powerCoverRadius",2,"覆盖范围");

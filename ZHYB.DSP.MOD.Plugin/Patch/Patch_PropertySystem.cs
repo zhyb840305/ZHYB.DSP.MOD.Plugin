@@ -1,4 +1,4 @@
-﻿namespace ZHYB.DSP.MOD.Plugin
+﻿namespace Patch
 {
     [HarmonyPatch(typeof(PropertySystem))]
     public class Patch_PropertySystem

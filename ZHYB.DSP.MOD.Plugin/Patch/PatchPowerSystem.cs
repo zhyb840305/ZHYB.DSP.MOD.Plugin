@@ -1,4 +1,6 @@
-﻿namespace ZHYB.DSP.MOD.Plugin.Patch
+﻿using ZHYB.DSP.MOD.Plugin;
+
+namespace Patch
 {
     [HarmonyPatch(typeof(PowerSystem))]
     internal class PatchPowerSystem
@@ -15,6 +17,7 @@
         public static void PatchNewAccumulatorComponent(PowerSystem __instance,int __result)
         {
             ModPlugin.logger.LogInfo("NewAccumulatorComponent");
+            __instance.accPool[__result].curEnergy=__instance.accPool[__result].maxEnergy;
         }
 
         [HarmonyPostfix]

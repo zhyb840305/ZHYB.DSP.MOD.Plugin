@@ -1,4 +1,4 @@
-﻿namespace ZHYB.DSP.MOD.Plugin
+﻿namespace ModClass
 {
     internal static class ToggleforceAccMode
     {
@@ -11,7 +11,7 @@
                 return;
 
             if(factory!=GameMain.localPlanet.factory)
-                ToggleforceAccMode.forceAccMode=false;
+                forceAccMode=false;
 
             factory=GameMain.localPlanet.factory;
             if(factory==null)

@@ -86,20 +86,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\MODCommon\GlobalUsing.cs">
-      <Link>GlobalUsing.cs</Link>
+      <Link>ModLinks\GlobalUsing.cs</Link>
     </Compile>
     <Compile Include="..\MODCommon\ModIds.cs">
-      <Link>ModPluginClass\ModIds.cs</Link>
+      <Link>ModLinks\ModIds.cs</Link>
     </Compile>
     <Compile Include="..\MODCommon\ModTranslate.cs">
-      <Link>ModTranslate.cs</Link>
+      <Link>ModLinks\ModTranslate.cs</Link>
     </Compile>
     <Compile Include="..\MODCommon\ModUtil.cs">
-      <Link>ModPluginClass\ModUtil.cs</Link>
+      <Link>ModLinks\ModUtil.cs</Link>
     </Compile>
     <Compile Include="ModConfig.cs" />
     <Compile Include="ModPluginClass\ToggleforceAccMode.cs" />
     <Compile Include="ModPluginClass\ExtenisStationComponent.cs" />
+    <Compile Include="Patch\Patch_PlayerAction_Build.cs" />
     <Compile Include="Patch\Patch_Minier.cs" />
     <Compile Include="Patch\PatchBuildingParameters.cs" />
     <Compile Include="Patch\PatchGameSave.cs" />
@@ -123,9 +124,9 @@
   <PropertyGroup>
     <PostBuildEvent>echo $(ProjectName)
 taskkill /F /IM DSPGAME.EXE
-set ModPath=C:\Users\zheng\AppData\Roaming\r2modmanPlus-local\DysonSphereProgram\profiles\Default\BepInEx\plugins\
-del /F/Q %25MODPath%25\$(TargetFileName)
-copy $(TargetPath) %25MODPath%25\$(TargetFileName)
+set ModPath=C:\Users\zheng\AppData\Roaming\r2modmanPlus-local\DysonSphereProgram\profiles\zhyb\
+del /F/Q %25MODPath%25\BepInEx\plugins\$(TargetFileName)
+copy $(TargetPath) %25MODPath%25\BepInEx\plugins\$(TargetFileName)
 echo $(ProjectName)</PostBuildEvent>
     <LangVersion>latest</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>

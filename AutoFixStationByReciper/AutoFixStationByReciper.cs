@@ -1,4 +1,6 @@
-﻿using AutoFixStationByRecipes;
+﻿namespace ModClass
+{
+}
 
 namespace AutoFixStationByReciper
 {
@@ -20,7 +22,7 @@ namespace AutoFixStationByReciper
             logger=base.Logger;
             ModTranslate.Init();
             harmony=new Harmony(Plugin_GUID);
-            harmony.PatchAll(typeof(PatchUIStationWindow));
+            harmony.PatchAll();
         }
 
         public void Update()

@@ -1,4 +1,4 @@
-﻿namespace ZHYB.DSP.MOD.Plugin.Patch
+﻿namespace Patch
 {
     [HarmonyPatch(typeof(UIReplicatorWindow))]
     internal class PatchUIReplicatorWindow

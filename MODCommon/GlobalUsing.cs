@@ -8,7 +8,20 @@ global using BepInEx.Logging;
 
 global using HarmonyLib;
 
-global using ModCommon;
-
 global using UnityEngine;
 global using UnityEngine.UI;
+global using ModCommon;
+global using ModClass;
+global using Patch;
+
+namespace ModCommon
+{
+}
+
+namespace ModClass
+{
+}
+
+namespace Patch
+{
+}
