@@ -49,15 +49,4 @@ namespace SuperAccumulator
             }
         }
     }
-
-    [HarmonyPatch(typeof(PowerSystem))]
-    internal class PatchPowerSystem
-    {
-        [HarmonyPostfix]
-        [HarmonyPatch("NewAccumulatorComponent")]
-        public static void PatchNewAccumulatorComponent(PowerSystem __instance,int __result)
-        {
-            __instance.accPool[__result].curEnergy=__instance.accPool[__result].maxEnergy;
-        }
-    }
 }

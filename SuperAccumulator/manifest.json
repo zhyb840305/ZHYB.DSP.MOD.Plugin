@@ -1,7 +1,7 @@
 {
   "name": "SuperAccumulator",
   "version_number": "20230501.9.43",
-  "website_url": "",
+  "website_url": "https://github.com/zhyb840305/ZHYB.DSP.MOD.Plugin",
   "description": "超级蓄电池，1E的电量，足以用到游戏结束",
   "dependencies": [
     "xiaoye97-BepInEx-5.4.17"
