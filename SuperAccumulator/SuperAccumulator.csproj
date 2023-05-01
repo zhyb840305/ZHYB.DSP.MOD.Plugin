@@ -110,10 +110,10 @@
   <PropertyGroup>
     <PostBuildEvent>
 			echo $(ProjectName)
-			taskkill /F /IM DSPGAME.EXE
+taskkill /F /IM DSPGAME.EXE
 			set ModPath=C:\Users\zheng\AppData\Roaming\r2modmanPlus-local\DysonSphereProgram\profiles\Default\
-			del /F/Q %25MODPath%25\BepInEx\plugins\$(TargetFileName)
-			copy $(TargetPath) %25MODPath%25\BepInEx\plugins\$(TargetFileName)
+del /F/Q %25MODPath%25\BepInEx\plugins\$(TargetFileName)
+copy $(TargetPath) %25MODPath%25\BepInEx\plugins\$(TargetFileName)
 			echo $(ProjectName)
 		</PostBuildEvent>
     <LangVersion>latest</LangVersion>

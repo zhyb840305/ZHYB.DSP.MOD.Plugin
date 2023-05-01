@@ -13,6 +13,8 @@
 
 1. Install BepInEx
 2. Then drag .dll into BepInEx/plugins
+
+
  
 
 ## 安装
