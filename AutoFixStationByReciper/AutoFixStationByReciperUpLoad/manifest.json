@@ -1,9 +1,0 @@
-{
-  "name": "AutoFixStationByReciper",
-  "version_number": "20230420.20.45",
-  "website_url": "",
-  "description": "在物流塔上添加一个选择配方的按钮，通过配方对物流塔进行自动填充",
-  "dependencies": [
-    "xiaoye97-BepInEx-5.4.17"
-  ]
-}
