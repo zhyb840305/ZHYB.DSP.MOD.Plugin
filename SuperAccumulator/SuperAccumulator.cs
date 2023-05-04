@@ -1,13 +1,4 @@
-﻿using BepInEx.Logging;
-using BepInEx;
-
-using HarmonyLib;
-using Steamworks;
-using UnityEngine;
-using System.Security.Cryptography;
-using System;
-
-namespace SuperAccumulator
+﻿namespace SuperAccumulator
 {
     [BepInPlugin(Plugin_GUID,Plugin_NAME,Plugin_VERSION)]
     [BepInProcess(Plugin_Process)]
@@ -19,11 +10,10 @@ namespace SuperAccumulator
         public const string Plugin_VERSION = "20230501.9.43";
 
         private Harmony harmony;
-        public static ManualLogSource logger;
 
         public void Start()
         {
-            logger=base.Logger;
+            ModCommon.ModCommon.logger=base.Logger;
             harmony=new Harmony(Plugin_GUID);
             harmony.PatchAll();
         }

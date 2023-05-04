@@ -1,8 +1,4 @@
-﻿using ZHYB.DSP.MOD.Plugin;
-
-using static Patch.PatchGameSave;
-
-namespace Patch
+﻿namespace Patch
 {
     [HarmonyPatch(typeof(GameSave))]
     internal class PatchGameSave
@@ -13,7 +9,6 @@ namespace Patch
 
         public static void setStationComponent(PlanetData planet)
         {
-            ModPlugin.logger.LogInfo("setStationComponent");
             PrefabDesc prefabDesc_PlanetaryLogisticsStation =  LDB.items.Select(ItemIds.PlanetaryLogisticsStation  ).prefabDesc;
             PrefabDesc prefabDesc_InterstellarLogisticsStation=  LDB.items.Select(ItemIds.InterstellarLogisticsStation  ).prefabDesc;
 
@@ -44,7 +39,6 @@ namespace Patch
 
         public static void setPowerAccumulatorComponent(PlanetData planet)
         {
-            ModPlugin.logger.LogInfo("setPowerAccumulatorComponent");
             PlanetFactory factory = planet?.factory;
             if(factory==null)
                 return;

@@ -14,12 +14,11 @@ namespace AutoFixStationByReciper
         public const string Plugin_Process = "DSPGAME.exe";
         public const string Plugin_VERSION = "20230420.20.45";
         public static PlanetFactory factory;
-        public static ManualLogSource logger;
+
         private Harmony harmony;
 
         public void Start()
         {
-            logger=base.Logger;
             ModTranslate.Init();
             harmony=new Harmony(Plugin_GUID);
             harmony.PatchAll();

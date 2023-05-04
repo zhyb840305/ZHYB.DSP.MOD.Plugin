@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Patch
+﻿namespace Patch
 {
     [HarmonyPatch(typeof(PlayerAction_Build))]
     internal class PatchPlayerAction_Build

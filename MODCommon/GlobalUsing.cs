@@ -8,14 +8,29 @@ global using BepInEx.Logging;
 
 global using HarmonyLib;
 
+global using ModClass;
+
+global using ModCommon;
+
 global using UnityEngine;
 global using UnityEngine.UI;
-global using ModCommon;
-global using ModClass;
-global using Patch;
 
 namespace ModCommon
 {
+    public static class ModCommon
+    {
+        public static ManualLogSource logger = null;
+        public static PlanetFactory factory = null;
+
+        public static void Log(string str)
+        {
+            if(logger==null)
+            {
+                logger=new ManualLogSource("ZHYB.DSP.MOD.ModCommon");
+            }
+            logger.LogInfo(str);
+        }
+    }
 }
 
 namespace ModClass

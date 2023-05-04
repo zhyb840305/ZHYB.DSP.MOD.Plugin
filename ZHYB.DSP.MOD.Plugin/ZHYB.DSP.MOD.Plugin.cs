@@ -8,12 +8,12 @@
         public const string Plugin_NAME = "ZHYB.DSP.MOD.Plugin";
         public const string Plugin_Process = "DSPGAME.exe";
         public const string Plugin_VERSION = "1.0.0";
-        public static ManualLogSource logger;
+
         public static Harmony harmony;
 
         public void Start()
         {
-            logger=base.Logger;
+            ModCommon.ModCommon.logger=base.Logger;
             ModTranslate.Init();
             ModConfig.Init(Config);
             harmony=new Harmony(Plugin_GUID);

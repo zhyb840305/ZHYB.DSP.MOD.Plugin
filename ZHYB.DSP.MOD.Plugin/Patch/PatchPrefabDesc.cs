@@ -1,8 +1,4 @@
-﻿using System.Security.Cryptography;
-
-using ZHYB.DSP.MOD.Plugin;
-
-namespace Patch
+﻿namespace Patch
 {
     [HarmonyPatch(typeof(PrefabDesc))]
     internal class PatchPrefabDesc

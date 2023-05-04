@@ -1,6 +1,4 @@
-﻿using ModClass;
-
-namespace OneKeyToggleExtraOrSpeedUp
+﻿namespace OneKeyToggleExtraOrSpeedUp
 {
     [BepInPlugin(Plugin_GUID,Plugin_NAME,Plugin_VERSION)]
     [BepInProcess(Plugin_Process)]
@@ -10,12 +8,12 @@ namespace OneKeyToggleExtraOrSpeedUp
         public const string Plugin_NAME = "ZHYB.DSP.MOD.OneKeyToggleExtraOrSpeedUp";
         public const string Plugin_Process = "DSPGAME.exe";
         public const string Plugin_VERSION = "1.0.0";
-        public ManualLogSource logger;
+
         private Harmony harmony;
 
         public void Start()
         {
-            logger=base.Logger;
+            ModCommon.ModCommon.logger=base.Logger;
             harmony=new Harmony(Plugin_GUID);
             harmony.PatchAll();
         }

@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using ZHYB.DSP.MOD.Plugin;
-
-namespace Patch
+﻿namespace Patch
 {
     [HarmonyPatch(typeof(UIMinerWindow))]
     internal class Patch_UIMinerWindow
     {
-        private static readonly string _coverText = "zhyb覆盖矿".Translate();
+        private static readonly string _coverText = "覆盖".Translate();
         private static readonly string _veinText = Localization.language==Language.enUS ? " veins" : "个矿脉".Translate();
         private static readonly string _displayUnit = ModConfig.ConfigShowMiner.DisplayAsPerSecond.Value ? "sec" : "min";
         private static readonly float _displayFactor = ModConfig.ConfigShowMiner.DisplayAsPerSecond.Value ? 60.0f : 1.0f;
@@ -47,9 +39,9 @@ namespace Patch
     [HarmonyPatch(typeof(UIVeinCollectorPanel))]
     internal static class Patch_UIVeinCollectorPanel__OnUpdate
     {
-        private static readonly string _coverText = "zhyb覆盖矿".Translate();
+        private static readonly string _coverText = "覆盖".Translate();
 
-        private static readonly string _veinText = Localization.language==Language.enUS ? " veins" : "个矿脉".Translate();
+        private static readonly string _veinText = Localization.language==Language.enUS ? " veins" : "个矿".Translate();
 
         private static readonly string _displayUnit = ModConfig.ConfigShowMiner.DisplayAsPerSecond.Value ? "sec" : "min";
         private static readonly float _displayFactor = ModConfig.ConfigShowMiner.DisplayAsPerSecond.Value ? 60.0f : 1.0f;

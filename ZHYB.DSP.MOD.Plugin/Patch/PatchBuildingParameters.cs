@@ -1,6 +1,4 @@
-﻿using ModClass;
-
-namespace Patch
+﻿namespace Patch
 {
     [HarmonyPatch(typeof(BuildingParameters))]
     internal class PatchBuildingParameters
