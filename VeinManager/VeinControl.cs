@@ -1,16 +1,23 @@
-﻿namespace ModClass
+﻿using UnityEngine;
+
+namespace ModClass
 {
     internal class VeinControl
     {
         private static readonly Dictionary<EVeinType,int> veinAmount = new();
-        public static PlanetFactory factory = null;
-        private const int VEINPERCOUNT = 10*10000;
+        public static PlanetFactory factory;
+        private const int VEINPERCOUNT = 100000;
         public static bool CheatMode = false;
+
+        private static void Log(string str)
+        {
+            VeinManager.VeinManager.logger.LogInfo(str);
+        }
 
         private static void ClearAllVein()
         {
             veinAmount.Clear();
-
+            Log(veinAmount.Count().ToString());
             foreach(EVeinType et in Enum.GetValues(typeof(EVeinType)))
             {
                 if(LDB.veins.Select(( int )et)==null)
@@ -42,31 +49,32 @@
 
             factory.RecalculateAllVeinGroups();
             factory.ArrangeVeinGroups();
+            Log("factory.veinGroups.Length:"+factory.veinGroups.Length.ToString());
         }
 
         private static void RefreshNewVein()
         {
             var idx =0;
-            float lat=56.0f;
+
             foreach(var Pair in veinAmount)
             {
-                if(( !CheatMode )&&( Pair.Value==0 ))
-                    continue;
                 int veintype =(int)Pair.Key;
                 if(LDB.veins.Select(veintype)==null)
                     continue;
-                float log=idx++*25;
+                float lat=60.0f;
+                float log=idx++*20;
                 Vector3 pos =PostionCompute(lat,log,0,Pair.Key==EVeinType.Oil);
                 int groupIndex=factory.AddVeinGroup(Pair.Key,pos);
                 int CurrentCount;
                 if(CheatMode)
-                    CurrentCount=( int )( EVeinType.Oil==Pair.Key ? ( VEINPERCOUNT*1000/60 ) : VEINPERCOUNT*1000 );
+                    CurrentCount=( int )( EVeinType.Oil==Pair.Key ? ( VEINPERCOUNT*300/60 ) : VEINPERCOUNT*300 );
                 else
                     CurrentCount=( int )( EVeinType.Oil==Pair.Key ? ( Pair.Value/60 ) : Pair.Value );
                 if(CurrentCount==0)
                     continue;
-                int veinPerCount= ( int )( Pair.Key==EVeinType.Oil?( CurrentCount/3) :VEINPERCOUNT );
-
+                int veinPerCount= ( int )( Pair.Key==EVeinType.Oil?( CurrentCount/5) :VEINPERCOUNT );
+                if(Pair.Key==EVeinType.Oil)
+                    Log($"CurrentCount={CurrentCount}   VeinPercount={veinPerCount}   ");
                 int index=0;
                 while(CurrentCount>0)
                 {
@@ -114,8 +122,8 @@
 
         public static Vector3 PostionCompute(float lat,float log,int index,bool oil = false)
         {
-            float areaRadius = oil ? 5f : 0.15f;
-            int    lineCount=oil ?  2 : 10;
+            float areaRadius = oil ? 5f : 0.25f;
+            int    lineCount=oil ?  2 : 8;
 
             return Maths.GetPosByLatitudeAndLongitude(
                 lat+( index%lineCount )*areaRadius,
@@ -127,7 +135,6 @@
         {
             if(GameMain.localPlanet.type==EPlanetType.Gas)
                 return;
-
             ClearAllVein();
             RefreshNewVein();
         }

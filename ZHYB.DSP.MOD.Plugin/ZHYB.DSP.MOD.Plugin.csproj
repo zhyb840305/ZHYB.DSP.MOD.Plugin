@@ -101,6 +101,7 @@
     <Compile Include="ModPluginClass\ToggleforceAccMode.cs" />
     <Compile Include="ModPluginClass\ExtenisStationComponent.cs" />
     <Compile Include="ModPluginClass\VeinControl.cs" />
+    <Compile Include="Patch\Patch_UIPlanetDetail.cs" />
     <Compile Include="Patch\Patch_PlayerAction_Build.cs" />
     <Compile Include="Patch\Patch_Minier.cs" />
     <Compile Include="Patch\PatchBuildingParameters.cs" />
