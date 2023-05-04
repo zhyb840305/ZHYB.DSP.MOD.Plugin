@@ -116,8 +116,8 @@ set ModPath=C:\Users\zheng\AppData\Roaming\r2modmanPlus-local\DysonSphereProgram
 set ZIPPath=$(SolutionDir)\Upload\$(ProjectName)
 MKDIR %25ZIPPath%25
 del /F/Q %25MODPath%25\BepInEx\plugins\$(TargetFileName)
-copy $(TargetPath) %25MODPath%25\BepInEx\plugins\$(TargetFileName)
-copy $(TargetPath) %25ZIPPath%25\$(TargetFileName)
+copy /y $(TargetPath) %25MODPath%25\BepInEx\plugins\$(TargetFileName)
+copy /y $(TargetPath) %25ZIPPath%25\$(TargetFileName)
 </PostBuildEvent>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>

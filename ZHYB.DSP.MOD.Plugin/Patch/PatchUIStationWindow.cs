@@ -5,6 +5,9 @@
     {
         private static UIButton btnSelectReciper;
         private static UIStationWindow stationWindow;
+        private static StationComponent component;
+        private static PlanetFactory factory;
+        private static Dictionary<int,CountItemResult> countItemResults = new Dictionary<int,CountItemResult>();
 
         [HarmonyPostfix]
         [HarmonyPatch("_OnInit")]
@@ -24,6 +27,8 @@
                 btnSelectReciper.highlighted=true;
 
                 btnSelectReciper.onClick+=OnReciperSelectButtonClick;
+
+                btnSelectReciper.tips.type=UIButton.ItemTipType.Recipe;
                 btnSelectReciper.tips.tipTitle="ShowReciper";
                 btnSelectReciper.tips.tipText="Auto fix Station By Reciper";
                 btnSelectReciper.tips.corner=8;
@@ -35,46 +40,89 @@
         [HarmonyPatch("_OnOpen")]
         public static void Patch_OnOpen()
         {
-            var stationComponent= stationWindow.transport.stationPool[stationWindow.stationId];
-            btnSelectReciper.gameObject.SetActive(!stationComponent.isVeinCollector);
+            factory=GameMain.localPlanet.factory;
+            component=factory.transport.stationPool[stationWindow.stationId];
+            btnSelectReciper.gameObject.SetActive(!component.isVeinCollector);
         }
 
         private static void OnRecipePickerReturn(RecipeProto recipeProto)
         {
             if(recipeProto==null)
                 return;
-            StationComponent component= GameMain.localPlanet.factory.transport.stationPool[UIRoot.instance.uiGame.stationWindow.stationId];
+
             if(component==null)
                 return;
 
-            int idx  ;
-            for(idx=0;idx<component.storage.Length;idx++)
+            int itemCountMax = GetStationItemMax();
+
+            for(var id = 0;id<component.storage.Length;id++)
             {
-                GameMain.localPlanet.factory.transport.SetStationStorage(
-                              component.id,idx,
+                factory.transport.SetStationStorage(
+                              component.id,id,
                               0,100,
                               ELogisticStorage.Demand,ELogisticStorage.None,
                               GameMain.mainPlayer);
             }
 
-            Dictionary<int,CountItemResult> keyValuePairs=new Dictionary<int, CountItemResult>();
-            CountItemResult countItemResult,           tmp;
+            RefreshCountItemResult(recipeProto);
+
+            int    idx=0;
+            foreach(var keyValue in countItemResults)
+            {
+                factory.transport.SetStationStorage(
+                    component.id,idx++,
+                    keyValue.Key,keyValue.Value.GetRemoteLogic()==ELogisticStorage.Demand ? itemCountMax/10 : itemCountMax,
+                    keyValue.Value.GetlocalLogic(),
+                     keyValue.Value.GetRemoteLogic(),
+                    GameMain.mainPlayer);
+            }
+
+            if(component.isStellar&&( component.storage[component.storage.Length-1].itemId==ItemIds.SpaceWarper||component.storage[component.storage.Length-1].itemId==0 ))
+            {
+                factory.transport.SetStationStorage(
+                       component.id,component.storage.Length-1,
+                       ItemIds.SpaceWarper,100,
+                       ELogisticStorage.Demand,ELogisticStorage.None,
+                       GameMain.mainPlayer);
+            }
+
+            static int GetStationItemMax()
+            {
+                int modelIndex = factory.entityPool[component.entityId].modelIndex;
+                ModelProto modelProto = LDB.models.Select(modelIndex);
+                int num = 0;
+                if(modelProto!=null)
+                {
+                    num=modelProto.prefabDesc.stationMaxItemCount;
+                }
+
+                int    itemCountMax=num+
+                ( component.isCollector ? GameMain.history.localStationExtraStorage : ( component.isVeinCollector ? GameMain.history.localStationExtraStorage : ( ( !component.isStellar ) ? GameMain.history.localStationExtraStorage : GameMain.history.remoteStationExtraStorage ) ) );
+                return itemCountMax;
+            }
+        }
+
+        private static void RefreshCountItemResult(RecipeProto recipeProto)
+        {
+            int idx;
+            countItemResults.Clear();
+            CountItemResult countItemResult, tmp;
             for(idx=0;idx<recipeProto.Items.Count();idx++)
             {
                 int itemid=recipeProto.Items[idx]  ;
                 int Count=recipeProto.ItemCounts[idx]  ;
 
-                if(keyValuePairs.TryGetValue(key: itemid,out countItemResult))
+                if(countItemResults.TryGetValue(key: itemid,out countItemResult))
                 {
                     tmp=countItemResult;
                     tmp.itemCount=Count;
-                    keyValuePairs[itemid]=tmp;
+                    countItemResults[itemid]=tmp;
                 }
                 else
                 {
                     tmp.itemCount=Count;
                     tmp.resultCount=0;
-                    keyValuePairs.Add(itemid,tmp);
+                    countItemResults.Add(itemid,tmp);
                 }
             }
 
@@ -83,39 +131,18 @@
                 int itemid=recipeProto.Results[idx] ;
                 int Count=recipeProto.ResultCounts[idx]      ;
 
-                if(keyValuePairs.TryGetValue(itemid,out countItemResult))
+                if(countItemResults.TryGetValue(itemid,out countItemResult))
                 {
                     tmp=countItemResult;
                     tmp.resultCount=Count;
-                    keyValuePairs[itemid]=tmp;
+                    countItemResults[itemid]=tmp;
                 }
                 else
                 {
                     tmp.itemCount=0;
                     tmp.resultCount=Count;
-                    keyValuePairs.Add(itemid,tmp);
+                    countItemResults.Add(itemid,tmp);
                 }
-            }
-
-            idx=0;
-            foreach(var keyValue in keyValuePairs)
-            {
-                tmp=keyValue.Value;
-                GameMain.localPlanet.factory.transport.SetStationStorage(
-                    component.id,idx++,
-                    keyValue.Key,int.MaxValue,
-                    tmp.GetlocalLogic(),
-                     tmp.GetRemoteLogic(),
-                    GameMain.mainPlayer);
-            }
-
-            if(component.isStellar&&( component.storage[component.storage.Length-1].itemId==ItemIds.SpaceWarper||component.storage[component.storage.Length-1].itemId==0 ))
-            {
-                GameMain.localPlanet.factory.transport.SetStationStorage(
-                       component.id,component.storage.Length-1,
-                       ItemIds.SpaceWarper,100,
-                       ELogisticStorage.Demand,ELogisticStorage.None,
-                       GameMain.mainPlayer);
             }
         }
 
@@ -127,7 +154,7 @@
             }
             else
             {
-                UIRecipePicker.Popup(UIRoot.instance.uiGame.stationWindow.windowTrans.anchoredPosition+new Vector2(-300f,-135f),
+                UIRecipePicker.Popup(stationWindow.windowTrans.anchoredPosition+new Vector2(-300f,-135f),
                 OnRecipePickerReturn,ERecipeType.None);
             }
         }

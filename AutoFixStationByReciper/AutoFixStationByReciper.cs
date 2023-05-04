@@ -1,8 +1,4 @@
-﻿namespace ModClass
-{
-}
-
-namespace AutoFixStationByReciper
+﻿namespace AutoFixStationByReciper
 {
     [BepInPlugin(Plugin_GUID,Plugin_NAME,Plugin_VERSION)]
     [BepInProcess(Plugin_Process)]

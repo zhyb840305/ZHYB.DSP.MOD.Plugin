@@ -4,7 +4,7 @@
     internal class Patch_UIMinerWindow
     {
         private static readonly string _coverText = "覆盖".Translate();
-        private static readonly string _veinText = Localization.language==Language.enUS ? " veins" : "个矿脉".Translate();
+        private static readonly string _veinText = Localization.language==Language.enUS ? " veins" : "个矿".Translate();
         private static readonly string _displayUnit = ModConfig.ConfigShowMiner.DisplayAsPerSecond.Value ? "sec" : "min";
         private static readonly float _displayFactor = ModConfig.ConfigShowMiner.DisplayAsPerSecond.Value ? 60.0f : 1.0f;
         private static readonly float _oreValuePerNode = 30.0f;
