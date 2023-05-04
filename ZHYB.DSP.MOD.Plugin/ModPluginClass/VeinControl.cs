@@ -11,11 +11,11 @@
         {
             veinAmount.Clear();
 
-            foreach(EVeinType et in Enum.GetValues(typeof(EVeinType)))
+            foreach(EVeinType eVeinType in Enum.GetValues(typeof(EVeinType)))
             {
-                if(LDB.veins.Select(( int )et)==null)
+                if(LDB.veins.Select(( int )eVeinType)==null)
                     continue;
-                veinAmount.Add(et,0);
+                veinAmount.Add(eVeinType,0);
             }
 
             foreach(var vein in factory.veinPool)
@@ -31,13 +31,14 @@
                 {
                     veinAmount.Add(vein.type,vein.amount);
                 }
-                factory.RemoveVeinWithComponents(vein.id);
+
                 if(factory.veinGroups[vein.groupIndex].count==0)
                 {
                     factory.veinGroups[vein.groupIndex].type=0;
                     factory.veinGroups[vein.groupIndex].amount=0;
                     factory.veinGroups[vein.groupIndex].pos=Vector3.zero;
                 }
+                factory.RemoveVeinWithComponents(vein.id);
             }
 
             factory.RecalculateAllVeinGroups();
@@ -47,7 +48,7 @@
         private static void RefreshNewVein()
         {
             var idx =0;
-            float lat=56.0f;
+            float lat=58.0f;
             foreach(var Pair in veinAmount)
             {
                 if(( !CheatMode )&&( Pair.Value==0 ))
@@ -56,16 +57,18 @@
                 if(LDB.veins.Select(veintype)==null)
                     continue;
                 float log=idx++*25;
+
                 Vector3 pos =PostionCompute(lat,log,0,Pair.Key==EVeinType.Oil);
+
                 int groupIndex=factory.AddVeinGroup(Pair.Key,pos);
                 int CurrentCount;
                 if(CheatMode)
-                    CurrentCount=( int )( EVeinType.Oil==Pair.Key ? ( VEINPERCOUNT*1000/60 ) : VEINPERCOUNT*1000 );
+                    CurrentCount=EVeinType.Oil==Pair.Key ? ( VEINPERCOUNT*1000/60 ) : VEINPERCOUNT*1000;
                 else
-                    CurrentCount=( int )( EVeinType.Oil==Pair.Key ? ( Pair.Value/60 ) : Pair.Value );
+                    CurrentCount=EVeinType.Oil==Pair.Key ? ( Pair.Value/60 ) : Pair.Value;
                 if(CurrentCount==0)
                     continue;
-                int veinPerCount= ( int )( Pair.Key==EVeinType.Oil?( CurrentCount/3) :VEINPERCOUNT );
+                int veinPerCount=Pair.Key==EVeinType.Oil?( CurrentCount/4+1) :VEINPERCOUNT ;
 
                 int index=0;
                 while(CurrentCount>0)
@@ -114,8 +117,8 @@
 
         public static Vector3 PostionCompute(float lat,float log,int index,bool oil = false)
         {
-            float areaRadius = oil ? 5f : 0.15f;
-            int    lineCount=oil ?  2 : 10;
+            float areaRadius = oil ? 5f : 0.175f;
+            int    lineCount = oil ?  1 : 10;
 
             return Maths.GetPosByLatitudeAndLongitude(
                 lat+( index%lineCount )*areaRadius,

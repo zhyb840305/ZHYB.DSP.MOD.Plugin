@@ -5,6 +5,8 @@
     {
         private static UIButton btnSelectReciper;
         private static UIStationWindow stationWindow;
+        private static StationComponent stationComponent;
+        private static PlanetFactory factory;
 
         [HarmonyPostfix]
         [HarmonyPatch("_OnInit")]
@@ -35,7 +37,8 @@
         [HarmonyPatch("_OnOpen")]
         public static void Patch_OnOpen()
         {
-            var stationComponent= stationWindow.transport.stationPool[stationWindow.stationId];
+            factory=GameMain.localPlanet.factory;
+            stationComponent=stationWindow.transport.stationPool[stationWindow.stationId];
             btnSelectReciper.gameObject.SetActive(!stationComponent.isVeinCollector);
         }
 
@@ -43,22 +46,22 @@
         {
             if(recipeProto==null)
                 return;
-            StationComponent component= GameMain.localPlanet.factory.transport.stationPool[UIRoot.instance.uiGame.stationWindow.stationId];
-            if(component==null)
+
+            if(stationComponent==null)
                 return;
 
             int idx  ;
-            for(idx=0;idx<component.storage.Length;idx++)
+            for(idx=0;idx<stationComponent.storage.Length;idx++)
             {
-                GameMain.localPlanet.factory.transport.SetStationStorage(
-                              component.id,idx,
+                factory.transport.SetStationStorage(
+                              stationComponent.id,idx,
                               0,100,
                               ELogisticStorage.Demand,ELogisticStorage.None,
                               GameMain.mainPlayer);
             }
 
             Dictionary<int,CountItemResult> keyValuePairs=new Dictionary<int, CountItemResult>();
-            CountItemResult countItemResult,           tmp;
+            CountItemResult countItemResult,  tmp;
             for(idx=0;idx<recipeProto.Items.Count();idx++)
             {
                 int itemid=recipeProto.Items[idx]  ;
@@ -101,21 +104,21 @@
             foreach(var keyValue in keyValuePairs)
             {
                 tmp=keyValue.Value;
-                GameMain.localPlanet.factory.transport.SetStationStorage(
-                    component.id,idx++,
+                factory.transport.SetStationStorage(
+                    stationComponent.id,idx++,
                     keyValue.Key,int.MaxValue,
                     tmp.GetlocalLogic(),
                      tmp.GetRemoteLogic(),
                     GameMain.mainPlayer);
             }
 
-            if(component.isStellar&&( component.storage[component.storage.Length-1].itemId==ItemIds.SpaceWarper||component.storage[component.storage.Length-1].itemId==0 ))
+            if(stationComponent.isStellar&&( stationComponent.storage[stationComponent.storage.Length-1].itemId==ItemIds.SpaceWarper||stationComponent.storage[stationComponent.storage.Length-1].itemId==0 ))
             {
-                GameMain.localPlanet.factory.transport.SetStationStorage(
-                       component.id,component.storage.Length-1,
-                       ItemIds.SpaceWarper,100,
-                       ELogisticStorage.Demand,ELogisticStorage.None,
-                       GameMain.mainPlayer);
+                factory.transport.SetStationStorage(
+                        stationComponent.id,stationComponent.storage.Length-1,
+                        ItemIds.SpaceWarper,100,
+                        ELogisticStorage.Demand,ELogisticStorage.None,
+                        GameMain.mainPlayer);
             }
         }
 
@@ -127,7 +130,7 @@
             }
             else
             {
-                UIRecipePicker.Popup(UIRoot.instance.uiGame.stationWindow.windowTrans.anchoredPosition+new Vector2(-300f,-135f),
+                UIRecipePicker.Popup(stationWindow.windowTrans.anchoredPosition+new Vector2(-300f,-135f),
                 OnRecipePickerReturn,ERecipeType.None);
             }
         }
