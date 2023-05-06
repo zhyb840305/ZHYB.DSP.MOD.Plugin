@@ -92,7 +92,6 @@
                 type=type,
                 groupIndex=( short )groupIndex,
                 amount=count,
-
                 pos=Pos,
                 modelIndex=( short )LDB.veins.Select(veintype).ModelIndex,
                 productId=LDB.veins.Select(veintype).MiningItem,

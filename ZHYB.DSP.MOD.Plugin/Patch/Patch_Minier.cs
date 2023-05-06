@@ -65,7 +65,7 @@
                 {
                     if(minerComponent.type==EMinerType.Vein)
                     {
-                        var speed = (_oreValuePerNode * (float)GameMain.data.history.miningSpeedScale * (float)minerComponent.veinCount * ((float)minerComponent.speed / 10000.0)) / _displayFactor;
+                        var speed = _oreValuePerNode * GameMain.data.history.miningSpeedScale * (float)minerComponent.veinCount * (minerComponent.speed / 10000.0) / _displayFactor;
                         var speedText = speed.ToString("0.##");
                         var coverTextUnlessStacking = minerComponent.productCount > 0 ? "" : _coverText;
                         __instance.coverText.text=$"{coverTextUnlessStacking}{minerComponent.veinCount}{_veinText} ({speedText}/{_displayUnit})";
