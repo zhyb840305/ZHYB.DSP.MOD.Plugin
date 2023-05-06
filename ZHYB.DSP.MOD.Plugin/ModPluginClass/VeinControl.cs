@@ -1,6 +1,6 @@
 ﻿namespace ModClass
 {
-    internal class VeinControl
+    public class VeinControl
     {
         private static readonly Dictionary<EVeinType,int> veinAmount = new();
         public static PlanetFactory factory = null;
@@ -114,7 +114,7 @@
         public static Vector3 PostionCompute(float lat,float log,int index,bool oil = false)
         {
             float areaRadius = oil ? 5f : 0.15f;
-            int    lineCount=oil ?  2 : 10;
+            int    lineCount=oil ?  1 : 10;
 
             return Maths.GetPosByLatitudeAndLongitude(
                 lat+( index%lineCount )*areaRadius,
