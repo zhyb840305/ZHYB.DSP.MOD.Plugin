@@ -28,7 +28,7 @@ namespace ModCommon
             {
                 logger=new ManualLogSource("ZHYB.DSP.MOD.ModCommon");
             }
-            logger.LogInfo(str);
+            logger.LogMessage(str);
         }
     }
 }

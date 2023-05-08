@@ -7,7 +7,7 @@
         private static UIStationWindow stationWindow;
         private static StationComponent component;
         private static PlanetFactory factory;
-        private static Dictionary<int,CountItemResult> countItemResults = new Dictionary<int,CountItemResult>();
+        private static Dictionary<int,CountItemResult> countItemResults = new();
 
         [HarmonyPostfix]
         [HarmonyPatch("_OnInit")]
@@ -47,45 +47,6 @@
 
         private static void OnRecipePickerReturn(RecipeProto recipeProto)
         {
-            if(recipeProto==null)
-                return;
-
-            if(component==null)
-                return;
-
-            int itemCountMax = GetStationItemMax();
-
-            for(var id = 0;id<component.storage.Length;id++)
-            {
-                factory.transport.SetStationStorage(
-                              component.id,id,
-                              0,100,
-                              ELogisticStorage.Demand,ELogisticStorage.None,
-                              GameMain.mainPlayer);
-            }
-
-            RefreshCountItemResult(recipeProto);
-
-            int    idx=0;
-            foreach(var keyValue in countItemResults)
-            {
-                factory.transport.SetStationStorage(
-                    component.id,idx++,
-                    keyValue.Key,keyValue.Value.GetRemoteLogic()==ELogisticStorage.Demand ? itemCountMax/10 : itemCountMax,
-                    keyValue.Value.GetlocalLogic(),
-                     keyValue.Value.GetRemoteLogic(),
-                    GameMain.mainPlayer);
-            }
-
-            if(component.isStellar&&( component.storage[component.storage.Length-1].itemId==ItemIds.SpaceWarper||component.storage[component.storage.Length-1].itemId==0 ))
-            {
-                factory.transport.SetStationStorage(
-                       component.id,component.storage.Length-1,
-                       ItemIds.SpaceWarper,100,
-                       ELogisticStorage.Demand,ELogisticStorage.None,
-                       GameMain.mainPlayer);
-            }
-
             static int GetStationItemMax()
             {
                 int modelIndex = factory.entityPool[component.entityId].modelIndex;
@@ -99,6 +60,47 @@
                 int    itemCountMax=num+
                 ( component.isCollector ? GameMain.history.localStationExtraStorage : ( component.isVeinCollector ? GameMain.history.localStationExtraStorage : ( ( !component.isStellar ) ? GameMain.history.localStationExtraStorage : GameMain.history.remoteStationExtraStorage ) ) );
                 return itemCountMax;
+            }
+
+            if(recipeProto==null)
+                return;
+
+            if(component==null)
+                return;
+
+            int itemCountMax = GetStationItemMax();
+
+            for(var id = 0;id<component.storage.Length;id++)
+            {
+                factory.transport.SetStationStorage(
+                    component.id,id,
+                    0,100,
+                    ELogisticStorage.Demand,ELogisticStorage.None,
+                    GameMain.mainPlayer);
+            }
+
+            RefreshCountItemResult(recipeProto);
+
+            int    idx=0;
+            foreach(var keyValue in countItemResults)
+            {
+                factory.transport.SetStationStorage(
+                    component.id,idx++,
+                    keyValue.Key,
+                    keyValue.Value.GetRemoteLogic()==ELogisticStorage.Demand ? itemCountMax/10 : itemCountMax,
+                    keyValue.Value.GetlocalLogic(),
+                    keyValue.Value.GetRemoteLogic(),
+                    player: GameMain.mainPlayer);
+            }
+
+            if(component.isStellar&&( component.storage[component.storage.Length-1].itemId==ItemIds.SpaceWarper||component.storage[component.storage.Length-1].itemId==0 ))
+            {
+                factory.transport.SetStationStorage(
+                    component.id,component.storage.Length-1,
+                    ItemIds.SpaceWarper,100,
+                    ELogisticStorage.Demand,
+                    ELogisticStorage.None,
+                    GameMain.mainPlayer);
             }
         }
 

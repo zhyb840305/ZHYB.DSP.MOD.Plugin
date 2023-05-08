@@ -32,7 +32,7 @@
                 else if(ItemCount>NeedCount*5)
                     takeItem=NeedCount/5;
                 else
-                    takeItem=5;
+                    takeItem=2;
                 component.idleShipCount=GameMain.mainPlayer.package.TakeItem(ItemIds.LogisticsVessel,takeItem,out _);
                 UIRealtimeTip.Popup("大飞机数量："+( ItemCount-takeItem ).ToString());
             }
@@ -43,7 +43,8 @@
         {
             if(!component.isStellar)
                 return;
-            GameMain.localPlanet.factory.transport.SetStationStorage(
+            PlanetFactory factory = GameMain.localPlanet.factory;
+            factory.transport.SetStationStorage(
                component.id,
                component.storage.Length-1,
                ItemIds.SpaceWarper,
@@ -51,7 +52,7 @@
                ELogisticStorage.Demand,
                ELogisticStorage.None,
                GameMain.mainPlayer);
-            GameMain.localPlanet.factory.transport.gameData.galacticTransport.RefreshTraffic(component.gid);
+            factory.transport.gameData.galacticTransport.RefreshTraffic(component.gid);
         }
 
         public static void SetCharge(this StationComponent component,PrefabDesc prefabDesc)

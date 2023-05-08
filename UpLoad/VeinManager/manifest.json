@@ -1,6 +1,6 @@
 {
   "name": "VeinManager",
-  "version_number": "20230503.14.59",
+  "version_number": "20230507.1.52",
   "website_url": "https://github.com/zhyb840305/ZHYB.DSP.MOD.Plugin",
   "description": "矿物控制：对矿物自动整理",
   "dependencies": [
