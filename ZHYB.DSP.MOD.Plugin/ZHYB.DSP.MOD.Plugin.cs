@@ -2,50 +2,48 @@
 
 namespace ZHYB.DSP.MOD.Plugin
 {
-    [BepInPlugin(Plugin_GUID,Plugin_NAME,Plugin_VERSION)]
-    [BepInProcess(Plugin_Process)]
-    public class ModPlugin:BaseUnityPlugin
-    {
-        public const string Plugin_GUID = "ZHYB.DSP.MOD.Plugin";
-        public const string Plugin_NAME = "ZHYB.DSP.MOD.Plugin";
-        public const string Plugin_Process = "DSPGAME.exe";
-        public const string Plugin_VERSION = "1.0.0";
+	[BepInPlugin(Plugin_GUID,Plugin_NAME,Plugin_VERSION)]
+	[BepInProcess(Plugin_Process)]
+	public class ModPlugin:BaseUnityPlugin
+	{
+		public const string Plugin_GUID = "ZHYB.DSP.MOD.Plugin";
+		public const string Plugin_NAME = "ZHYB.DSP.MOD.Plugin";
+		public const string Plugin_Process = "DSPGAME.exe";
+		public const string Plugin_VERSION = "1.0.0";
 
-        public static Harmony harmony;
+		public static Harmony harmony;
 
-        public void Start()
-        {
-            ModCommon.ModCommon.logger=base.Logger;
-            ModTranslate.Init();
-            ModConfig.Init(Config);
-            harmony=new Harmony(Plugin_GUID);
-            harmony.PatchAll();
-        }
+		public void Start()
+		{
+			ModCommon.ModCommon.logger=base.Logger;
+			ModTranslate.Init();
+			ModConfig.Init(Config);
+			harmony=new Harmony(Plugin_GUID);
+			harmony.PatchAll();
+		}
 
-        public void Update()
-        {
-            if(GameMain.localPlanet==null)
-                return;
+		public void Update()
+		{
+			if(GameMain.localPlanet==null)
+				return;
+			VeinControl.factory=GameMain.localPlanet.factory;
+			KeyboardShortcut shortKey_Toggle_forceAccMode=new KeyboardShortcut(KeyCode.L,KeyCode.LeftControl, KeyCode.LeftShift,KeyCode.LeftAlt);
+			if(shortKey_Toggle_forceAccMode.IsDown())
+			{
+				ToggleforceAccMode.Toggle_forceAccMode();
+			}
 
-            if(Input.GetKeyDown(KeyCode.L))
-            {
-                ToggleforceAccMode.Toggle_forceAccMode();
-            }
-            VeinControl.factory=GameMain.localPlanet.factory;
-            KeyboardShortcut shortKey=new KeyboardShortcut(KeyCode.V,
-                                                           KeyCode.LeftControl,
-                                                           KeyCode.LeftShift,
-                                                           KeyCode.LeftAlt);
-            if(shortKey.IsDown())
-            {
-                VeinControl.CheatMode=true;
-                VeinControl.ControlVein();
-            }
-        }
+			KeyboardShortcut shortKey_VeinControl=new KeyboardShortcut(KeyCode.V,KeyCode.LeftControl, KeyCode.LeftShift,KeyCode.LeftAlt);
+			if(shortKey_VeinControl.IsDown())
+			{
+				VeinControl.CheatMode=true;
+				VeinControl.ControlVein();
+			}
+		}
 
-        public void OnDestroy()
-        {
-            harmony.UnpatchAll();
-        }
-    }
+		public void OnDestroy()
+		{
+			harmony.UnpatchAll();
+		}
+	}
 }

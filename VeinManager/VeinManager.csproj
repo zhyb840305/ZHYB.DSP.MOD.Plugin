@@ -119,11 +119,19 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>taskkill /F /IM DSPGAME.EXE
-set ModPath=C:\Users\zheng\AppData\Roaming\r2modmanPlus-local\DysonSphereProgram\profiles\zhyb\
+set ModPathA=C:\Users\zheng\AppData\Roaming\r2modmanPlus-local\DysonSphereProgram\profiles\zhyb\BepInEx\plugins\Test\
+set ModPathB=C:\Users\zheng\AppData\Roaming\r2modmanPlus-local\DysonSphereProgram\profiles\Default\BepInEx\plugins\Test\
 set ZIPPath=$(SolutionDir)\Upload\$(ProjectName)
+
+RD  /s /q %25MODPathA%25
+RD /s /q %25MODPathB%25
+
 MKDIR %25ZIPPath%25
-del /F/Q %25MODPath%25\BepInEx\plugins\$(TargetFileName)
-copy /y $(TargetPath) %25MODPath%25\BepInEx\plugins\$(TargetFileName)
+MKDIR %25MODPathA%25
+MKDIR %25MODPathB%25
+ 
+copy /y $(TargetPath) %25MODPathA%25\$(TargetFileName)
+copy /y $(TargetPath) %25MODPathA%25\$(TargetFileName)
 copy /y $(TargetPath) %25ZIPPath%25\$(TargetFileName)
 </PostBuildEvent>
     <LangVersion>latest</LangVersion>
