@@ -5,7 +5,7 @@
     {
         [HarmonyPostfix]
         [HarmonyPatch("_OnInit")]
-        public static void ChangeBuildRange(BuildTool_Click __instance)
+        public static void Patch_Oninit(BuildTool_Click __instance)
         {
             __instance.dotsSnapped=new Vector3[500];
         }
@@ -115,9 +115,9 @@
     {
         [HarmonyPostfix]
         [HarmonyPatch("_OnInit")]
-        public static void ChangeBuildRange(BuildTool_BlueprintPaste __instance)
+        public static void Patch_Oninit(BuildTool_BlueprintPaste __instance)
         {
-            __instance.dotsSnapped=new Vector3[50];
+            __instance.dotsSnapped=new Vector3[500];
         }
     }
 }

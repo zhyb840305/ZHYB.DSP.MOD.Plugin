@@ -7,7 +7,7 @@
         public const string Plugin_GUID = "ZHYB.DSP.MOD.VeinManager";
         public const string Plugin_NAME = "ZHYB.DSP.MOD.VeinManager";
         public const string Plugin_Process = "DSPGAME.exe";
-        public const string Plugin_VERSION = "20230503.14.59";
+        public const string Plugin_VERSION = "20230507.1.52";
 
         public static Harmony harmony;
         public ConfigEntry<bool> CheatMode;
@@ -15,10 +15,11 @@
 
         public void Start()
         {
-            CheatMode=Config.Bind<bool>("VeinManager","CheatMode",true,
-                "是否启用《全矿物添加》模式，《全矿物添加》模式后，添加全部矿物，每样矿物1G份");
-            shortKey=Config.Bind<KeyboardShortcut>("VeinManager","shortKey",
-                new KeyboardShortcut(KeyCode.V,KeyCode.LeftControl,KeyCode.LeftShift,KeyCode.LeftAlt),
+            CheatMode=Config.Bind("VeinManager","CheatMode",true,
+                "是否启用《全矿物添加》模式，启用《全矿物添加》模式后，添加全部矿物，每样矿物1000*10*10000份");
+            shortKey=Config.Bind("VeinManager","shortKey",
+                new KeyboardShortcut(
+                    KeyCode.V,KeyCode.LeftControl,KeyCode.LeftShift,KeyCode.LeftAlt),
                 "因为一个星球只可能用一次，快捷键设置：LeftControl LeftAlt LeftShift V");
 
             ModTranslate.Init();

@@ -1,4 +1,6 @@
-﻿namespace ZHYB.DSP.MOD.Plugin
+﻿using System.Globalization;
+
+namespace ZHYB.DSP.MOD.Plugin
 {
     [BepInPlugin(Plugin_GUID,Plugin_NAME,Plugin_VERSION)]
     [BepInProcess(Plugin_Process)]
@@ -28,6 +30,16 @@
             if(Input.GetKeyDown(KeyCode.L))
             {
                 ToggleforceAccMode.Toggle_forceAccMode();
+            }
+            VeinControl.factory=GameMain.localPlanet.factory;
+            KeyboardShortcut shortKey=new KeyboardShortcut(KeyCode.V,
+                                                           KeyCode.LeftControl,
+                                                           KeyCode.LeftShift,
+                                                           KeyCode.LeftAlt);
+            if(shortKey.IsDown())
+            {
+                VeinControl.CheatMode=true;
+                VeinControl.ControlVein();
             }
         }
 
