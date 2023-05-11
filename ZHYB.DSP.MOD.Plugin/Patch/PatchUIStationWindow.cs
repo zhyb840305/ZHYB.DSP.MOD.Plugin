@@ -9,6 +9,7 @@
 		private static PlanetFactory factory;
 		private static Dictionary<int,CountItemResult> countItemResults = new();
 		public static int Supply = 100;
+		public static int Demand = 100;
 
 		[HarmonyPostfix]
 		[HarmonyPatch("_OnInit")]
