@@ -15,10 +15,10 @@
 			ConfigStationComponent.shipAutoReplenish=config.Bind<bool>(ConfigStationComponent.SECTION,"shipAutoReplenish",false,"自动填充Ship，即自动的把大飞机全部填满");
 			ConfigStationComponent.warperNecessary=config.Bind<bool>(ConfigStationComponent.SECTION,"warperNecessary",true,"必须Warper");
 			//自动配置物流塔格子
-			ConfigAutoFixStationByReciper.AutoPercent_Supply=config.Bind<int>(ConfigAutoFixStationByReciper.SECTION,"AutoPercent_Supply",10,
-				 new ConfigDescription("根据配方配置物流塔格子,需求（原材料）提供的比例，比如每个格子最大20000，设置成10就是 10/100*20000=2000",new AcceptableValueRange<int>(1,100)));
-			ConfigAutoFixStationByReciper.AutoPercent_Demand=config.Bind<int>(ConfigAutoFixStationByReciper.SECTION,"AutoPercent_Demand",100,
-				new ConfigDescription("根据配方配置物流塔格子,供应（产出物）产品提供的比例，比如每个格子最大20000，设置成10就是 10/100*20000=2000",new AcceptableValueRange<int>(1,100)));
+			ConfigAutoFixStationByReciper.AutoPercent_Supply=config.Bind<int>(ConfigAutoFixStationByReciper.SECTION,"AutoPercent_Supply",100,
+				 new ConfigDescription("根据配方配置物流塔格子,供应（产出物）提供的比例，比如每个格子最大20000，设置成10就是 10/100*20000=2000",new AcceptableValueRange<int>(1,100)));
+			ConfigAutoFixStationByReciper.AutoPercent_Demand=config.Bind<int>(ConfigAutoFixStationByReciper.SECTION,"AutoPercent_Demand",10,
+				new ConfigDescription("根据配方配置物流塔格子,需求（原材料）产品提供的比例，比如每个格子最大20000，设置成10就是 10/100*20000=2000",new AcceptableValueRange<int>(1,100)));
 		}
 
 		public static class ConfigPrefabDesc

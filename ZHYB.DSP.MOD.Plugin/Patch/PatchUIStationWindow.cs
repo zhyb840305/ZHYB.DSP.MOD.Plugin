@@ -88,7 +88,7 @@
 				factory.transport.SetStationStorage(
 					component.id,idx++,
 					keyValue.Key,
-					keyValue.Value.GetRemoteLogic()==ELogisticStorage.Demand ? itemCountMax/AutoPercent_Demand*100 : itemCountMax/AutoPercent_Supply*100,
+					keyValue.Value.GetRemoteLogic()==ELogisticStorage.Demand ? ( itemCountMax/100*AutoPercent_Demand ) : ( itemCountMax/100*AutoPercent_Supply ),
 					keyValue.Value.GetlocalLogic(),
 					keyValue.Value.GetRemoteLogic(),
 					player: GameMain.mainPlayer);

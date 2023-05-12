@@ -4,7 +4,6 @@ namespace AutoFixStationByReciper
 {
 	[BepInPlugin(Plugin_GUID,Plugin_NAME,Plugin_VERSION)]
 	[BepInProcess(Plugin_Process)]
-	[BepInIncompatibility(Plugin_GUID)]
 	public class AutoFixStationByReciper:BaseUnityPlugin
 	{
 		public const string Plugin_GUID = "ZHYB.DSP.MOD.AutoFixStationByReciper";
@@ -19,10 +18,10 @@ namespace AutoFixStationByReciper
 
 		public void Start()
 		{
-			AutoPercent_Supply=Config.Bind<int>(SECTION,"AutoPercent_Supply",10,
-	 new ConfigDescription("根据配方配置物流塔格子,需求（原材料）提供的比例，比如每个格子最大20000，设置成10就是 10/100*20000=2000",new AcceptableValueRange<int>(1,100)));
-			AutoPercent_Demand=Config.Bind<int>(SECTION,"AutoPercent_Demand",100,
-				new ConfigDescription("根据配方配置物流塔格子,供应（产出物）产品提供的比例，比如每个格子最大20000，设置成10就是 10/100*20000=2000",new AcceptableValueRange<int>(1,100)));
+			AutoPercent_Supply=Config.Bind<int>(SECTION,"AutoPercent_Supply",100,
+				 new ConfigDescription("根据配方配置物流塔格子,供应（产出物）提供的比例，比如每个格子最大20000，设置成10就是 10/100*20000=2000",new AcceptableValueRange<int>(1,100)));
+			AutoPercent_Demand=Config.Bind<int>(SECTION,"AutoPercent_Demand",10,
+				new ConfigDescription("根据配方配置物流塔格子,需求（原材料）产品提供的比例，比如每个格子最大20000，设置成10就是 10/100*20000=2000",new AcceptableValueRange<int>(1,100)));
 			ModTranslate.Init();
 			PatchUIStationWindow.AutoPercent_Supply=AutoPercent_Supply.Value;
 			PatchUIStationWindow.AutoPercent_Demand=AutoPercent_Demand.Value;
