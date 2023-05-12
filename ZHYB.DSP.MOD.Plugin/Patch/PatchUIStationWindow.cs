@@ -58,8 +58,7 @@
 				{
 					num=modelProto.prefabDesc.stationMaxItemCount;
 				}
-
-				int    itemCountMax=num+
+				int itemCountMax=num+
 				( component.isCollector ? GameMain.history.localStationExtraStorage : ( component.isVeinCollector ? GameMain.history.localStationExtraStorage : ( ( !component.isStellar ) ? GameMain.history.localStationExtraStorage : GameMain.history.remoteStationExtraStorage ) ) );
 				return itemCountMax;
 			}

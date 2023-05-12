@@ -1,5 +1,7 @@
 ﻿using System.Globalization;
 
+using Patch;
+
 namespace ZHYB.DSP.MOD.Plugin
 {
 	[BepInPlugin(Plugin_GUID,Plugin_NAME,Plugin_VERSION)]
@@ -18,6 +20,8 @@ namespace ZHYB.DSP.MOD.Plugin
 			ModCommon.ModCommon.logger=base.Logger;
 			ModTranslate.Init();
 			ModConfig.Init(Config);
+			PatchUIStationWindow.AutoPercent_Demand=ModConfig.ConfigAutoFixStationByReciper.AutoPercent_Demand.Value;
+			PatchUIStationWindow.AutoPercent_Supply=ModConfig.ConfigAutoFixStationByReciper.AutoPercent_Supply.Value;
 			harmony=new Harmony(Plugin_GUID);
 			harmony.PatchAll();
 		}
@@ -26,6 +30,7 @@ namespace ZHYB.DSP.MOD.Plugin
 		{
 			if(GameMain.localPlanet==null)
 				return;
+
 			VeinControl.factory=GameMain.localPlanet.factory;
 			KeyboardShortcut shortKey_Toggle_forceAccMode=new KeyboardShortcut(KeyCode.L,KeyCode.LeftControl, KeyCode.LeftShift,KeyCode.LeftAlt);
 			if(shortKey_Toggle_forceAccMode.IsDown())
