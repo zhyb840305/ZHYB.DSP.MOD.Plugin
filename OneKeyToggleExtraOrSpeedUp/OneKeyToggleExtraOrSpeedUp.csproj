@@ -117,7 +117,6 @@
     <PostBuildEvent>taskkill /F /IM DSPGAME.EXE
 set ModPath=C:\Users\zheng\AppData\Roaming\r2modmanPlus-local\DysonSphereProgram\profiles\Default\BepInEx\plugins\Test\
 set ZIPPath=$(SolutionDir)\Upload\$(ProjectName)
-RD  /s /q %25MODPath%25
 MKDIR %25ZIPPath%25
 MKDIR %25MODPath%25
 copy /y $(TargetPath) %25MODPath%25\$(TargetFileName)

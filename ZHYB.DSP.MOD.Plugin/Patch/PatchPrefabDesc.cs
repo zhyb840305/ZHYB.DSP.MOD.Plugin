@@ -13,13 +13,7 @@
 				__instance.powerCoverRadius*=ModConfig.ConfigPrefabDesc.powerCoverRadius.Value;
 				__instance.powerConnectDistance*=ModConfig.ConfigPrefabDesc.powerConnectDistance.Value;
 			}
-			if(__instance.isInserter)
-			{
-				__instance.inserterCanStack=true;
-				__instance.inserterDelay/=6;
-				__instance.inserterSTT/=60;
-				__instance.inserterStackSize=16;
-			}
+
 			//物流塔
 			if(__instance.isStation&&!__instance.isCollectStation)
 			{
