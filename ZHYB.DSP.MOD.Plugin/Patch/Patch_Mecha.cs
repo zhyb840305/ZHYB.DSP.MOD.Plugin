@@ -31,9 +31,9 @@ namespace Patch
 
 		private static void PatchMecha(Mecha __instance)
 		{
-			__instance.buildArea=800f;
+			__instance.buildArea=1000f;
 			__instance.warpStorage.grids[0].stackSize=int.MaxValue;
-			__instance.droneSpeed=1500f;
+			__instance.droneSpeed=150f;
 			__instance.droneCount=256;
 			__instance.droneEnergyPerMeter=0;
 			__instance.corePowerGen=1*1000*1000*1000;
@@ -41,7 +41,6 @@ namespace Patch
 
 			GameMain.history.localStationExtraStorage=100000;
 			GameMain.history.remoteStationExtraStorage=500000;
-			GameMain.history.inserterStackCount=16;
 			GameMain.history.stationPilerLevel=16;
 
 			if(StackSizeUpdated)

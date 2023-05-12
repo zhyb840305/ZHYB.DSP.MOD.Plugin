@@ -23,7 +23,7 @@
 			if(GameMain.localPlanet==null)
 				return;
 
-			KeyboardShortcut shortcut=new KeyboardShortcut(KeyCode.L,KeyCode.LeftControl,KeyCode.LeftShift,KeyCode.LeftAlt );
+			KeyboardShortcut shortcut=new(KeyCode.L,KeyCode.LeftControl,KeyCode.LeftShift,KeyCode.LeftAlt );
 			if(shortcut.IsDown())
 			{
 				ToggleforceAccMode.Toggle_forceAccMode();
@@ -32,7 +32,7 @@
 
 		public void OnDestroy()
 		{
-			harmony.UnpatchAll();
+			harmony.UnpatchSelf();
 		}
 	}
 }
