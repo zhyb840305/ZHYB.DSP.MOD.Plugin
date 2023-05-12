@@ -20,8 +20,8 @@ namespace ZHYB.DSP.MOD.Plugin
 			ModCommon.ModCommon.logger=base.Logger;
 			ModTranslate.Init();
 			ModConfig.Init(Config);
-			PatchUIStationWindow.AutoPercent_Demand=ModConfig.ConfigAutoFixStationByReciper.AutoPercent_Demand.Value;
-			PatchUIStationWindow.AutoPercent_Supply=ModConfig.ConfigAutoFixStationByReciper.AutoPercent_Supply.Value;
+
+			PatchUIStationWindow.SetAutoPercent(Demand: ModConfig.ConfigAutoFixStationByReciper.AutoPercent_Demand.Value,Supply: ModConfig.ConfigAutoFixStationByReciper.AutoPercent_Supply.Value);
 
 			harmony=new Harmony(Plugin_GUID);
 			harmony.PatchAll();
@@ -33,23 +33,28 @@ namespace ZHYB.DSP.MOD.Plugin
 				return;
 
 			VeinControl.factory=GameMain.localPlanet.factory;
-			KeyboardShortcut shortKey_Toggle_forceAccMode=new KeyboardShortcut(KeyCode.L,KeyCode.LeftControl, KeyCode.LeftShift,KeyCode.LeftAlt);
+			KeyboardShortcut shortKey_Toggle_forceAccMode=new(KeyCode.L,KeyCode.LeftControl, KeyCode.LeftShift,KeyCode.LeftAlt);
 			if(shortKey_Toggle_forceAccMode.IsDown())
 			{
 				ToggleforceAccMode.Toggle_forceAccMode();
 			}
 
-			KeyboardShortcut shortKey_VeinControl=new KeyboardShortcut(KeyCode.V,KeyCode.LeftControl, KeyCode.LeftShift,KeyCode.LeftAlt);
+			KeyboardShortcut shortKey_VeinControl=new(KeyCode.V,KeyCode.LeftControl, KeyCode.LeftShift,KeyCode.LeftAlt);
 			if(shortKey_VeinControl.IsDown())
 			{
 				VeinControl.CheatMode=true;
 				VeinControl.ControlVein();
 			}
+			KeyboardShortcut shortcut_TestUIDysonEditor=new KeyboardShortcut(KeyCode.N,KeyCode.LeftControl);
+			if(shortcut_TestUIDysonEditor.IsDown())
+			{
+				TestUIDysonEditor.TestdysonEditor();
+			}
 		}
 
 		public void OnDestroy()
 		{
-			harmony.UnpatchAll();
+			harmony.UnpatchSelf();
 		}
 	}
 }

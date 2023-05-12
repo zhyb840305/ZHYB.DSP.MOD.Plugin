@@ -17,20 +17,20 @@ global using UnityEngine.UI;
 
 namespace ModCommon
 {
-    public static class ModCommon
-    {
-        public static ManualLogSource logger = null;
-        public static PlanetFactory factory = null;
+	public static class ModCommon
+	{
+		public static ManualLogSource logger = null;
+		public static PlanetFactory factory = null;
 
-        public static void Log(string str)
-        {
-            if(logger==null)
-            {
-                logger=new ManualLogSource("ZHYB.DSP.MOD.ModCommon");
-            }
-            logger.LogMessage(str);
-        }
-    }
+		public static void Log(string str)
+		{
+			if(logger==null)
+			{
+				logger=new ManualLogSource("ZHYB.DSP.MOD.ModCommon");
+			}
+			logger.LogMessage(str);
+		}
+	}
 }
 
 namespace ModClass
