@@ -39,6 +39,12 @@ namespace ZHYB.DSP.MOD.Plugin
 				ToggleforceAccMode.Toggle_forceAccMode();
 			}
 
+			KeyboardShortcut shortcut_AutoBuild=new(KeyCode.B,KeyCode.LeftControl );
+			if(shortcut_AutoBuild.IsDown())
+			{
+				AutoBuild.AutoBuildEnabled=!AutoBuild.AutoBuildEnabled;
+			}
+
 			KeyboardShortcut shortKey_VeinControl=new(KeyCode.V,KeyCode.LeftControl, KeyCode.LeftShift,KeyCode.LeftAlt);
 			if(shortKey_VeinControl.IsDown())
 			{

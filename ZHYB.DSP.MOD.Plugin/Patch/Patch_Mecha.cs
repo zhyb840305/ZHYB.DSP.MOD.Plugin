@@ -33,8 +33,8 @@ namespace Patch
 		{
 			__instance.buildArea=1000f;
 			__instance.warpStorage.grids[0].stackSize=int.MaxValue;
-			__instance.droneSpeed=150f;
 			__instance.droneCount=256;
+			__instance.droneMovement=4;
 			__instance.droneEnergyPerMeter=0;
 			__instance.corePowerGen=1*1000*1000*1000;
 			__instance.player.SetSandCount(int.MaxValue);

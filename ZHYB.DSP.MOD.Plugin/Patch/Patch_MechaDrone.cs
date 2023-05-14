@@ -19,6 +19,7 @@ namespace ZHYB.DSP.MOD.Plugin.Patch
 			if(__instance.stage==1)
 			{
 				dt=1;
+				__instance.stage=2;
 				__instance.progress=0f;
 			}
 			return true;
