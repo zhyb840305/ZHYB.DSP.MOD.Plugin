@@ -31,26 +31,8 @@ namespace ZHYB.DSP.MOD.Plugin
 		{
 			if(GameMain.localPlanet==null)
 				return;
-
 			VeinControl.factory=GameMain.localPlanet.factory;
-			KeyboardShortcut shortKey_Toggle_forceAccMode=new(KeyCode.L,KeyCode.LeftControl, KeyCode.LeftShift,KeyCode.LeftAlt);
-			if(shortKey_Toggle_forceAccMode.IsDown())
-			{
-				ToggleforceAccMode.Toggle_forceAccMode();
-			}
-
-			KeyboardShortcut shortcut_AutoBuild=new(KeyCode.B,KeyCode.LeftControl );
-			if(shortcut_AutoBuild.IsDown())
-			{
-				AutoBuild.AutoBuildEnabled=!AutoBuild.AutoBuildEnabled;
-			}
-
-			KeyboardShortcut shortKey_VeinControl=new(KeyCode.V,KeyCode.LeftControl, KeyCode.LeftShift,KeyCode.LeftAlt);
-			if(shortKey_VeinControl.IsDown())
-			{
-				VeinControl.CheatMode=true;
-				VeinControl.ControlVein();
-			}
+			ModClassManager.KeyDown();
 		}
 
 		public void OnDestroy()
