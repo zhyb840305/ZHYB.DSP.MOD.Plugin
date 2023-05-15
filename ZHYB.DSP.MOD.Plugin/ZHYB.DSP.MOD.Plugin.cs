@@ -51,6 +51,11 @@ namespace ZHYB.DSP.MOD.Plugin
 				VeinControl.CheatMode=true;
 				VeinControl.ControlVein();
 			}
+			KeyboardShortcut shortcut_TestUIDysonEditor=new KeyboardShortcut(KeyCode.N,KeyCode.LeftControl);
+			if(shortcut_TestUIDysonEditor.IsDown())
+			{
+				TestUIDysonEditor.TestdysonEditor();
+			}
 		}
 
 		public void OnDestroy()

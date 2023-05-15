@@ -97,10 +97,12 @@
     <Compile Include="..\MODCommon\ModUtil.cs">
       <Link>ModLinks\ModUtil.cs</Link>
     </Compile>
+    <Compile Include="TestUIDysonEditor.cs" />
     <Compile Include="ModConfig.cs" />
     <Compile Include="ModPluginClass\ToggleforceAccMode.cs" />
     <Compile Include="ModPluginClass\ExtenisStationComponent.cs" />
     <Compile Include="ModPluginClass\VeinControl.cs" />
+    <Compile Include="Patch\Patch_MechaDrone.cs" />
     <Compile Include="Patch\Patch_PlayerController.cs" />
     <Compile Include="Patch\Patch_MechaDrone.cs" />
     <Compile Include="Patch\Patch_UIPlanetDetail.cs" />
