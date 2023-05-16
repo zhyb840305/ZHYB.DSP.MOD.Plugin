@@ -8,10 +8,10 @@ using Patch;
 
 namespace ModClass
 {
-	public static class ModClassManager
+	public static class ManagerModClass
+
 	{
 		private static KeyboardShortcut shortKey_Toggle_forceAccMode = new(KeyCode.L,KeyCode.LeftControl,KeyCode.LeftShift,KeyCode.LeftAlt);
-
 		private static KeyboardShortcut shortKey_VeinControl = new(KeyCode.V,KeyCode.LeftControl,KeyCode.LeftShift,KeyCode.LeftAlt);
 		private static KeyboardShortcut shortcut_TestUIDysonEditor = new KeyboardShortcut(KeyCode.N,KeyCode.LeftControl);
 
@@ -28,7 +28,7 @@ namespace ModClass
 			}
 			else if(shortcut_TestUIDysonEditor.IsDown())
 			{
-				UIDysonEditorGen.DysonGenNodesFrameShell();
+				DysonSphereGen.DysonGenNodesFrameShell();
 			}
 		}
 	}

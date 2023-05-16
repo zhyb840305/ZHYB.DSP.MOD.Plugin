@@ -32,7 +32,7 @@ namespace ZHYB.DSP.MOD.Plugin
 			if(GameMain.localPlanet==null)
 				return;
 			VeinControl.factory=GameMain.localPlanet.factory;
-			ModClassManager.KeyDown();
+			ManagerModClass.KeyDown();
 		}
 
 		public void OnDestroy()

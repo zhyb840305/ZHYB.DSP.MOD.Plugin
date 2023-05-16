@@ -8,10 +8,8 @@
 		{
 			var prebuildPool=__instance.actionBuild?.player?.factory?.prebuildPool;
 			var player=GameMain.mainPlayer;
-
-			if(player.mecha.coreEnergy<player.mecha.coreEnergyCap*0.2&&UIGame.viewMode==EViewMode.Build&&prebuildPool!=null)
+			if(prebuildPool==null||UIGame.viewMode!=EViewMode.Build||player==null)
 				return;
-
 			bool flag = false;
 			int preCount=0;
 
