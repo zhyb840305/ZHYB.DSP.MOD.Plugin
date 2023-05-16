@@ -5,17 +5,15 @@ namespace ModClass
 	public static class UIDysonEditorGen
 	{
 		private const int perAngle = 10;
-		private static int[,] nodsIds;
 
 		public static void DysonGenNodesFrameShell()
 		{
 			UIDysonEditor dysonEditor=UIRoot.instance.uiGame.dysonEditor;
-
-			DysonSphereLayer layer =UIRoot.instance.uiGame.dysonEditor?.selection?.singleSelectedLayer;
+			DysonSphereLayer layer =dysonEditor?.selection?.singleSelectedLayer;
 			if(layer==null)
 				return;
-			Array.Clear(nodsIds,0,0);
-			nodsIds=new int[180/perAngle+10,360/perAngle+10];
+
+			int[,] nodsIds = new int[180/perAngle+10,360/perAngle+10];
 
 			var nodeProtoId=dysonEditor.nodeProtoId;
 			var frameProtoId=dysonEditor.frameProtoId;

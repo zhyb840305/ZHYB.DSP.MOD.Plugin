@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperAccumulator", "SuperAc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VeinManager", "VeinManager\VeinManager.csproj", "{5A5C8836-C706-4982-AC09-2C0002784394}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BigUpgradeSize", "BigUpgradeSize\BigUpgradeSize.csproj", "{8AF5F025-5286-409C-970C-3A44F80A48B7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{5A5C8836-C706-4982-AC09-2C0002784394}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A5C8836-C706-4982-AC09-2C0002784394}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A5C8836-C706-4982-AC09-2C0002784394}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AF5F025-5286-409C-970C-3A44F80A48B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AF5F025-5286-409C-970C-3A44F80A48B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AF5F025-5286-409C-970C-3A44F80A48B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AF5F025-5286-409C-970C-3A44F80A48B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

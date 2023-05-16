@@ -1,0 +1,9 @@
+{
+  "name": "BigUpgradeSize",
+  "version_number": "202305116.15.26",
+  "website_url": "https://github.com/zhyb840305/ZHYB.DSP.MOD.Plugin",
+  "description": "更大的升级范围",
+  "dependencies": [
+    "xiaoye97-BepInEx-5.4.17"
+  ]
+}
