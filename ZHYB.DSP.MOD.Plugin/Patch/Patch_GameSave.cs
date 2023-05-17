@@ -3,7 +3,7 @@
 namespace Patch
 {
 	[HarmonyPatch(typeof(GameSave))]
-	internal class PatchGameSave
+	internal class Patch_GameSave
 	{
 		public delegate void ActionPlanetData(PlanetData planet);
 

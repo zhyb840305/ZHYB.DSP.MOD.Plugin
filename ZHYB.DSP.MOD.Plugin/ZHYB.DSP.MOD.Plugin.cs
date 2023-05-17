@@ -21,7 +21,7 @@ namespace ZHYB.DSP.MOD.Plugin
 			ModTranslate.Init();
 			ModConfig.Init(Config);
 
-			PatchUIStationWindow.SetAutoPercent(Demand: ModConfig.ConfigAutoFixStationByReciper.AutoPercent_Demand.Value,Supply: ModConfig.ConfigAutoFixStationByReciper.AutoPercent_Supply.Value);
+			Patch_UIStationWindow.SetAutoPercent(Demand: ModConfig.ConfigAutoFixStationByReciper.AutoPercent_Demand.Value,Supply: ModConfig.ConfigAutoFixStationByReciper.AutoPercent_Supply.Value);
 
 			harmony=new Harmony(Plugin_GUID);
 			harmony.PatchAll();

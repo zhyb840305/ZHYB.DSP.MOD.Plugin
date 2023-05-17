@@ -1,7 +1,7 @@
 ﻿namespace Patch
 {
 	[HarmonyPatch(typeof(UIStationWindow))]
-	internal class PatchUIStationWindow
+	internal class Patch_UIStationWindow
 	{
 		private static UIButton btnSelectReciper;
 		private static UIStationWindow stationWindow;

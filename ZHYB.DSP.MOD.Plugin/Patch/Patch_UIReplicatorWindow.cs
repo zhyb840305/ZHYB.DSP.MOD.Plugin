@@ -1,7 +1,7 @@
 ﻿namespace Patch
 {
     [HarmonyPatch(typeof(UIReplicatorWindow))]
-    internal class PatchUIReplicatorWindow
+    internal class Patch_UIReplicatorWindow
     {
         [HarmonyPrefix]
         [HarmonyPatch("OnPlusButtonClick")]

@@ -1,7 +1,7 @@
 ﻿namespace Patch
 {
 	[HarmonyPatch(typeof(BuildingParameters))]
-	internal class PatchBuildingParameters
+	internal class Patch_BuildingParameters
 	{
 		[HarmonyPostfix]
 		[HarmonyPatch("ApplyPrebuildParametersToEntity")]

@@ -1,7 +1,7 @@
 ﻿namespace Patch
 {
     [HarmonyPatch(typeof(PowerSystem))]
-    internal class PatchPowerSystem
+    internal class Patch_PowerSystem
     {
         [HarmonyPostfix]
         [HarmonyPatch("NewGeneratorComponent")]

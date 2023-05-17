@@ -1,7 +1,7 @@
 ﻿namespace Patch
 {
     [HarmonyPatch(typeof(PlanetTransport))]
-    internal class PatchPlanetTransport
+    internal class Patch_PlanetTransport
     {
         [HarmonyPostfix]
         [HarmonyPatch("NewStationComponent")]

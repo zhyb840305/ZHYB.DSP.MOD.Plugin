@@ -1,7 +1,7 @@
 ﻿namespace Patch
 {
     [HarmonyPatch(typeof(PlanetFactory))]
-    internal class PatchPlanetFactory
+    internal class Patch_PlanetFactory
     {
         private const int pilerLvl = 4;
 

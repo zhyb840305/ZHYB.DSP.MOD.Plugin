@@ -1,7 +1,7 @@
 ﻿namespace Patch
 {
 	[HarmonyPatch(typeof(PrefabDesc))]
-	internal class PatchPrefabDesc
+	internal class Patch_PrefabDesc
 	{
 		[HarmonyPostfix]
 		[HarmonyPatch("ReadPrefab")]
