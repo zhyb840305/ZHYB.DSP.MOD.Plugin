@@ -12,9 +12,7 @@
 				return;
 			bool flag = false;
 			int preCount=0;
-
 			Vector3 vector3 = new Vector3(0.0f, 0.0f, 0.0f);
-
 			foreach(PrebuildData prebuildData in prebuildPool)
 			{
 				if(prebuildData.id!=0&&( prebuildData.itemRequired==0||prebuildData.itemRequired<=player.package.GetItemCount(prebuildData.protoId) ))
@@ -30,16 +28,13 @@
 				}
 			}
 
-			if(flag)
+			if(flag&&preCount>1000&&UIGame.viewMode==EViewMode.Build)
 			{
 				player.Order(new OrderNode()
 				{
 					target=vector3,
 					type=EOrderType.Move
 				},false);
-
-				if(preCount==0)
-					player.ClearOrders();
 			}
 		}
 	}

@@ -16,6 +16,7 @@ namespace Patch
 		{
 			if(planet.type!=EPlanetType.Gas)
 				return;
+
 			PrefabDesc prefabDesc_PlanetaryLogisticsStation =  LDB.items.Select(ItemIds.PlanetaryLogisticsStation  ).prefabDesc;
 			PrefabDesc prefabDesc_InterstellarLogisticsStation=  LDB.items.Select(ItemIds.InterstellarLogisticsStation  ).prefabDesc;
 
@@ -63,16 +64,17 @@ namespace Patch
 
 		public static void setPlanetName(PlanetData planet)
 		{
+			if(planet.waterItemId==-1)
+				planet.waterItemId=ItemIds.SulfuricAcid;
+
 			if(planet.singularity==EPlanetSingularity.TidalLocked)
 			{
 				if(planet.name.Contains("潮汐锁定"))
 					return;
 
 				planet.overrideName=planet.name+"  潮汐锁定";
-				while(GameMain.history.GetStarPin(planet.star.id)!=EPin.Show)
-					GameMain.history.ToggleStarPin(planet.star.id);
-				while(GameMain.history.GetPlanetPin(planet.id)!=EPin.Show)
-					GameMain.history.TogglePlanetPin(planet.id);//.SetPlanetPin(planet.id,EPin.Show);
+				GameMain.history.SetPlanetPin(planet.id,EPin.Show);
+				GameMain.history.SetStarPin(planet.star.id,EPin.Show);
 			}
 		}
 
