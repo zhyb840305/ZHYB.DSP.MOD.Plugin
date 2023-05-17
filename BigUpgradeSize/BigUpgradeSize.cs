@@ -20,6 +20,7 @@ namespace BigUpgradeSize
 		public const string Plugin_NAME = "ZHYB.DSP.MOD.BigUpgradeSize";
 		public const string Plugin_Process = "DSPGAME.exe";
 		public const string Plugin_VERSION = "20230516.15.38";
+		public const int cursorSize = 50;
 		private Harmony harmony = new Harmony(Plugin_GUID);
 
 		private void Start()
@@ -133,9 +134,9 @@ namespace BigUpgradeSize
 				{
 					__instance.cursorSize=1;
 				}
-				else if(__instance.cursorSize>50)
+				else if(__instance.cursorSize>BigUpgradeSize.cursorSize)
 				{
-					__instance.cursorSize=50;
+					__instance.cursorSize=BigUpgradeSize.cursorSize;
 				}
 
 				if(__instance.castGround)

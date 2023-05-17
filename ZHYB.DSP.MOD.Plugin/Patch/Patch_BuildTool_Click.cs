@@ -117,6 +117,8 @@ namespace Patch
 	[HarmonyPatch(typeof(BuildTool_Upgrade))]
 	public static class PatchBuildTool_Upgrade
 	{
+		public const int BigUpgradeSize = 50;
+
 		[HarmonyPrefix]
 		[HarmonyPatch("DeterminePreviews")]
 		public static bool Patch_DeterminePreviews(BuildTool_Upgrade __instance)
@@ -213,9 +215,9 @@ namespace Patch
 				{
 					__instance.cursorSize=1;
 				}
-				else if(__instance.cursorSize>50)
+				else if(__instance.cursorSize>BigUpgradeSize)
 				{
-					__instance.cursorSize=50;
+					__instance.cursorSize=BigUpgradeSize;
 				}
 
 				if(__instance.castGround)
