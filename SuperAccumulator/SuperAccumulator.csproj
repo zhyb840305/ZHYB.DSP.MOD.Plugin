@@ -100,11 +100,11 @@
     <Compile Include="..\MODCommon\GlobalUsing.cs">
       <Link>GlobalUsing.cs</Link>
     </Compile>
-    <Compile Include="..\ZHYB.DSP.MOD.Plugin\Patch\PatchPowerSystem.cs">
-      <Link>PatchPowerSystem.cs</Link>
-    </Compile>
     <Compile Include="..\ZHYB.DSP.MOD.Plugin\Patch\Patch_PlayerAction_Build.cs">
       <Link>Patch_PlayerAction_Build.cs</Link>
+    </Compile>
+    <Compile Include="..\ZHYB.DSP.MOD.Plugin\Patch\Patch_PowerSystem.cs">
+      <Link>Patch_PowerSystem.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SuperAccumulator.cs" />

@@ -18,8 +18,7 @@
 			CheatMode=Config.Bind("VeinManager","CheatMode",true,
 				"是否启用《全矿物添加》模式，启用《全矿物添加》模式后，添加全部矿物，每样矿物1000*10*10000份");
 			shortKey=Config.Bind("VeinManager","shortKey",
-				new KeyboardShortcut(
-					KeyCode.V,KeyCode.LeftControl,KeyCode.LeftShift,KeyCode.LeftAlt),
+				new KeyboardShortcut(KeyCode.V,KeyCode.LeftControl,KeyCode.LeftShift,KeyCode.LeftAlt),
 				"因为一个星球只可能用一次，快捷键设置：LeftControl LeftAlt LeftShift V");
 
 			ModTranslate.Init();

@@ -85,8 +85,8 @@
     <Compile Include="..\MODCommon\ModUtil.cs">
       <Link>ModLinks\ModUtil.cs</Link>
     </Compile>
-    <Compile Include="..\ZHYB.DSP.MOD.Plugin\Patch\PatchUIStationWindow.cs">
-      <Link>ModLinks\PatchUIStationWindow.cs</Link>
+    <Compile Include="..\ZHYB.DSP.MOD.Plugin\Patch\Patch_UIStationWindow.cs">
+      <Link>ModLinks\Patch_UIStationWindow.cs</Link>
     </Compile>
     <Compile Include="AutoFixStationByReciper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
