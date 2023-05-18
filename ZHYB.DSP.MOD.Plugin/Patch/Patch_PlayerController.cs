@@ -6,6 +6,7 @@
 		[HarmonyPostfix, HarmonyPatch("GetInput")]
 		public static void Postfix_GetInput(PlayerController __instance)
 		{
+			Dictionary<int,Dictionary<int,Dictionary<int,int>>> bbbb=new();
 			var prebuildPool=__instance.actionBuild?.player?.factory?.prebuildPool;
 			var player=GameMain.mainPlayer;
 			if(prebuildPool==null||UIGame.viewMode!=EViewMode.Build||player==null)
