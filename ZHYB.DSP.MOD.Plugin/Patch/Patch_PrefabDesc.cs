@@ -7,6 +7,8 @@
 		[HarmonyPatch("ReadPrefab")]
 		public static void PatchReadPrefab(PrefabDesc __instance)
 		{
+			if(!ModConfig.CheatMode.Value)
+				return;
 			if(__instance.isPowerNode)
 			{
 				__instance.genEnergyPerTick*=ModConfig.ConfigPrefabDesc.genEnergyPerTick.Value;
@@ -19,10 +21,11 @@
 			{
 				__instance.stationMaxItemCount=0;
 				__instance.idleEnergyPerTick/=1000;
+
 				if(__instance.isCollectStation)
 				{
-					__instance.stationMaxEnergyAcc/=1000;
-					__instance.workEnergyPerTick/=1000;
+					__instance.stationMaxEnergyAcc*=1000;
+					__instance.workEnergyPerTick*=1000;
 				}
 				else
 				{

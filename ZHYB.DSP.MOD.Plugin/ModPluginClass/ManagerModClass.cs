@@ -23,7 +23,7 @@ namespace ModClass
 			}
 			else if(shortKey_VeinControl.IsDown())
 			{
-				VeinControl.CheatMode=true;
+				VeinControl.CheatMode=ModConfig.CheatMode.Value;
 				VeinControl.ControlVein();
 			}
 			else if(shortcut_TestUIDysonEditor.IsDown())

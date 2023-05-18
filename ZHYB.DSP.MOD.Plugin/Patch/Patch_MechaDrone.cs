@@ -7,6 +7,8 @@
 		[HarmonyPatch("Update")]
 		public static bool PatchUpdate(MechaDrone __instance,ref float dt)
 		{
+			if(!ModConfig.CheatMode.Value)
+				return true;
 			if(__instance.stage==1)
 			{
 				dt=1;
