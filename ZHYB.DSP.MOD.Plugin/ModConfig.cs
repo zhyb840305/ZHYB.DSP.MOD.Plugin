@@ -6,7 +6,7 @@
 
 		internal static void Init(ConfigFile config)
 		{
-			CheatMode=config.Bind("公共参数","CheatMode",false,description: "启用作弊模式");
+			CheatMode=config.Bind("公共参数","CheatMode",true,description: "启用作弊模式");
 
 			//发电设备
 			ConfigPrefabDesc.genEnergyPerTick=config.Bind<int>(ConfigPrefabDesc.SECTION,"genEnergyPerTick",100,"发电倍数");

@@ -41,7 +41,6 @@ namespace Patch
 		{
 			if(!ModConfig.CheatMode.Value)
 				return;
-
 			__instance.buildArea=1000f;
 			__instance.warpStorage.grids[0].stackSize=int.MaxValue;
 			__instance.droneSpeed=150f;
