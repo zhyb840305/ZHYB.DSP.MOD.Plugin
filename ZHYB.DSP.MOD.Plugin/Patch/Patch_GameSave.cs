@@ -24,7 +24,7 @@ namespace Patch
 			if(factory!=null)
 			{
 				StationComponent[] stationPool = planet.factory.transport.stationPool;
-				var   consumerPool=  factory.powerSystem.consumerPool;
+
 				if(stationPool!=null&&stationPool.Length!=0)
 				{
 					for(int stationId = 0;stationId<stationPool.Length;++stationId)
@@ -82,6 +82,8 @@ namespace Patch
 		[HarmonyPatch("LoadCurrentGame")]
 		public static void LoadCurrentGamePatch(ref bool __result)
 		{
+			if(!ModConfig.CheatMode.Value)
+				return;
 			if(!__result)
 				return;
 
