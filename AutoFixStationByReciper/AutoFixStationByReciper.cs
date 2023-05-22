@@ -23,7 +23,9 @@ namespace AutoFixStationByReciper
 			AutoPercent_Demand=Config.Bind<int>(SECTION,"AutoPercent_Demand",10,
 				new ConfigDescription("根据配方配置物流塔格子,需求（原材料）产品提供的比例，比如每个格子最大20000，设置成10就是 10/100*20000=2000",new AcceptableValueRange<int>(1,100)));
 			ModTranslate.Init();
-			Patch_UIStationWindow.SetAutoPercent(Supply: AutoPercent_Supply.Value,Demand: AutoPercent_Demand.Value);
+
+			Patch_UIStationWindow.AutoPercent_Supply=AutoPercent_Supply.Value;
+			Patch_UIStationWindow.AutoPercent_Demand=AutoPercent_Demand.Value;
 			harmony=new Harmony(Plugin_GUID);
 			harmony.PatchAll();
 		}

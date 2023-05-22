@@ -15,9 +15,10 @@
 
 		public void Start()
 		{
+			ModCommon.ModCommon.logger=base.Logger;
 			CheatMode=Config.Bind("VeinManager","CheatMode",true,
 				"是否启用《全矿物添加》模式，启用《全矿物添加》模式后，添加全部矿物，每样矿物1000*10*10000份");
-			shortKey=Config.Bind("VeinManager","shortKey",
+			shortKey=Config.Bind<KeyboardShortcut>("VeinManager","shortKey",
 				new KeyboardShortcut(KeyCode.V,KeyCode.LeftControl,KeyCode.LeftShift,KeyCode.LeftAlt),
 				"因为一个星球只可能用一次，快捷键设置：LeftControl LeftAlt LeftShift V");
 
@@ -31,9 +32,9 @@
 			if(GameMain.localPlanet==null)
 				return;
 
-			VeinControl.factory=GameMain.localPlanet.factory;
 			if(shortKey.Value.IsDown())
 			{
+				ModCommon.ModCommon.logger.LogInfo(data: " VeinManager  VeinControl");
 				VeinControl.CheatMode=CheatMode.Value;
 				VeinControl.ControlVein();
 			}

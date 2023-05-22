@@ -10,14 +10,8 @@ namespace Patch
 		private static StationComponent stationComponent;
 		private static PlanetFactory factory;
 		private static readonly Dictionary<int,CountItemResult> countItemResults = new();
-		private static int AutoPercent_Supply = 100;
-		private static int AutoPercent_Demand = 100;
-
-		public static void SetAutoPercent(int Supply = 100,int Demand = 100)
-		{
-			AutoPercent_Supply=Supply;
-			AutoPercent_Demand=Demand;
-		}
+		public static int AutoPercent_Supply = 100;
+		public static int AutoPercent_Demand = 100;
 
 		[HarmonyPostfix]
 		[HarmonyPatch("_OnInit")]

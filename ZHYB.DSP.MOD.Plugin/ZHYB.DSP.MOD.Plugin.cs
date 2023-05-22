@@ -21,7 +21,8 @@ namespace ZHYB.DSP.MOD.Plugin
 			ModTranslate.Init();
 			ModConfig.Init(Config);
 
-			Patch_UIStationWindow.SetAutoPercent(Demand: ModConfig.ConfigAutoFixStationByReciper.AutoPercent_Demand.Value,Supply: ModConfig.ConfigAutoFixStationByReciper.AutoPercent_Supply.Value);
+			Patch_UIStationWindow.AutoPercent_Demand=ModConfig.ConfigAutoFixStationByReciper.AutoPercent_Demand.Value;
+			Patch_UIStationWindow.AutoPercent_Supply=ModConfig.ConfigAutoFixStationByReciper.AutoPercent_Supply.Value;
 
 			harmony=new Harmony(Plugin_GUID);
 			harmony.PatchAll();
@@ -32,7 +33,6 @@ namespace ZHYB.DSP.MOD.Plugin
 			if(GameMain.localPlanet==null)
 				return;
 
-			VeinControl.factory=GameMain.localPlanet.factory;
 			ManagerModClass.KeyDown();
 		}
 

@@ -3,7 +3,7 @@
 	public class VeinControl
 	{
 		private static readonly Dictionary<EVeinType,int> veinAmount = new();
-		public static PlanetFactory factory = null;
+		private static PlanetFactory factory = null;
 		private const int VEINPERCOUNT = 10*10000;
 		public static bool CheatMode = false;
 
@@ -129,6 +129,7 @@
 		{
 			if(GameMain.localPlanet.type==EPlanetType.Gas)
 				return;
+			factory=GameMain.localPlanet.factory;
 
 			ClearAllVein();
 			RefreshNewVein();
