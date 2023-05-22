@@ -1,11 +1,13 @@
-﻿namespace Patch
+﻿using UnityEngine.EventSystems;
+
+namespace Patch
 {
 	[HarmonyPatch(typeof(UIStationWindow))]
 	internal class Patch_UIStationWindow
 	{
 		private static UIButton btnSelectReciper;
 		private static UIStationWindow stationWindow;
-		private static StationComponent component;
+		private static StationComponent stationComponent;
 		private static PlanetFactory factory;
 		private static readonly Dictionary<int,CountItemResult> countItemResults = new();
 		private static int AutoPercent_Supply = 100;
@@ -49,15 +51,15 @@
 		public static void Patch_OnOpen()
 		{
 			factory=GameMain.localPlanet.factory;
-			component=factory.transport.stationPool[stationWindow.stationId];
-			btnSelectReciper.gameObject.SetActive(!component.isVeinCollector);
+			stationComponent=factory.transport.stationPool[stationWindow.stationId];
+			btnSelectReciper.gameObject.SetActive(!stationComponent.isVeinCollector);
 		}
 
 		private static void OnRecipePickerReturn(RecipeProto recipeProto)
 		{
 			static int GetStationItemMax()
 			{
-				int modelIndex = factory.entityPool[component.entityId].modelIndex;
+				int modelIndex = factory.entityPool[stationComponent.entityId].modelIndex;
 				ModelProto modelProto = LDB.models.Select(modelIndex);
 				int num = 0;
 				if(modelProto!=null)
@@ -65,22 +67,24 @@
 					num=modelProto.prefabDesc.stationMaxItemCount;
 				}
 				int itemCountMax=num+
-				( component.isCollector ? GameMain.history.localStationExtraStorage : ( component.isVeinCollector ? GameMain.history.localStationExtraStorage : ( ( !component.isStellar ) ? GameMain.history.localStationExtraStorage : GameMain.history.remoteStationExtraStorage ) ) );
+				( stationComponent.isCollector ? GameMain.history.localStationExtraStorage : ( stationComponent.isVeinCollector ? GameMain.history.localStationExtraStorage : ( ( !stationComponent.isStellar ) ? GameMain.history.localStationExtraStorage : GameMain.history.remoteStationExtraStorage ) ) );
 				return itemCountMax;
 			}
 
 			if(recipeProto==null)
 				return;
 
-			if(component==null)
+			if(stationComponent==null)
 				return;
 
 			int itemCountMax = GetStationItemMax();
+			SlotData[] tmpSlotsData= new SlotData[stationComponent.slots.Length];
+			Array.Copy(stationComponent.slots,tmpSlotsData,tmpSlotsData.Length);
 
-			for(var id = 0;id<component.storage.Length;id++)
+			for(var id = 0;id<stationComponent.storage.Length;id++)
 			{
 				factory.transport.SetStationStorage(
-					component.id,id,
+					stationComponent.id,id,
 					0,100,
 					ELogisticStorage.Demand,ELogisticStorage.None,
 					GameMain.mainPlayer);
@@ -92,18 +96,18 @@
 			foreach(var keyValue in countItemResults)
 			{
 				factory.transport.SetStationStorage(
-					component.id,idx++,
+					stationComponent.id,idx++,
 					keyValue.Key,
 					keyValue.Value.GetRemoteLogic()==ELogisticStorage.Demand ? ( itemCountMax/100*AutoPercent_Demand ) : ( itemCountMax/100*AutoPercent_Supply ),
 					keyValue.Value.GetlocalLogic(),
 					keyValue.Value.GetRemoteLogic(),
 					player: GameMain.mainPlayer);
 			}
-
-			if(component.isStellar&&( component.storage[component.storage.Length-1].itemId==ItemIds.SpaceWarper||component.storage[component.storage.Length-1].itemId==0 ))
+			Array.Copy(tmpSlotsData,stationComponent.slots,tmpSlotsData.Length);
+			if(stationComponent.isStellar&&( stationComponent.storage[stationComponent.storage.Length-1].itemId==ItemIds.SpaceWarper||stationComponent.storage[stationComponent.storage.Length-1].itemId==0 ))
 			{
 				factory.transport.SetStationStorage(
-					component.id,component.storage.Length-1,
+					stationComponent.id,stationComponent.storage.Length-1,
 					ItemIds.SpaceWarper,100,
 					ELogisticStorage.Demand,
 					ELogisticStorage.None,

@@ -82,6 +82,8 @@ namespace Patch
 		[HarmonyPatch("LoadCurrentGame")]
 		public static void LoadCurrentGamePatch(ref bool __result)
 		{
+			if(!ModConfig.CheatMode.Value)
+				return;
 			if(!__result)
 				return;
 

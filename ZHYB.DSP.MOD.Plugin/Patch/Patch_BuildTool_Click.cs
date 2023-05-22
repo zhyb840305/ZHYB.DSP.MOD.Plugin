@@ -11,6 +11,8 @@ namespace Patch
 		[HarmonyPatch("_OnInit")]
 		public static void Patch_Oninit(BuildTool_Click __instance)
 		{
+			if(!ModConfig.CheatMode.Value)
+				return;
 			__instance.dotsSnapped=new Vector3[500];
 		}
 
@@ -303,6 +305,8 @@ namespace Patch
 		[HarmonyPatch("_OnInit")]
 		public static void Patch_Oninit(BuildTool_BlueprintPaste __instance)
 		{
+			if(!ModConfig.CheatMode.Value)
+				return;
 			__instance.dotsSnapped=new Vector3[500];
 		}
 	}
