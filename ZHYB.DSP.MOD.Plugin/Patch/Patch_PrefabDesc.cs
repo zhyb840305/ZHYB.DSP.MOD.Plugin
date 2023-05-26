@@ -20,7 +20,7 @@
 			if(__instance.isStation&&!__instance.isCollectStation)
 			{
 				__instance.stationMaxItemCount=0;
-				__instance.idleEnergyPerTick/=1000;
+				__instance.idleEnergyPerTick=0;
 
 				if(__instance.isCollectStation)
 				{
@@ -32,6 +32,11 @@
 					__instance.stationMaxEnergyAcc*=1000;
 					__instance.workEnergyPerTick*=1000;
 				}
+			}
+
+			if(__instance.isInserter)
+			{
+				__instance.idleEnergyPerTick=0;
 			}
 
 			//超级电池

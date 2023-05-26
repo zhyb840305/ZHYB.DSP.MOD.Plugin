@@ -32,8 +32,8 @@ namespace ZHYB.DSP.MOD.Plugin
 		{
 			if(GameMain.localPlanet==null)
 				return;
-
-			ManagerModClass.KeyDown();
+			if(Input.anyKeyDown)
+				ManagerModClass.KeyDown();
 		}
 
 		public void OnDestroy()

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Patch
+﻿namespace Patch
 {
 	[HarmonyPatch(typeof(StationComponent))]
 	public class Patch_StationComponent
@@ -16,6 +10,14 @@ namespace Patch
 				return true;
 			__result=0;
 			return false;
+		}
+
+		[HarmonyPrefix, HarmonyPatch("SetPCState")]
+		public static bool PatchSetPCState(StationComponent __instance)
+		{
+			__instance.energy=__instance.energyMax;
+
+			return true;
 		}
 	}
 }

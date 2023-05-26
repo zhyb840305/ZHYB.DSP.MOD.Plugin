@@ -103,6 +103,7 @@
     <Compile Include="ModPluginClass\ToggleforceAccMode.cs" />
     <Compile Include="ModPluginClass\ExtenisStationComponent.cs" />
     <Compile Include="ModPluginClass\VeinControl.cs" />
+    <Compile Include="Patch\Patch_GameLoader.cs" />
     <Compile Include="Patch\Patch_StationComponent.cs" />
     <Compile Include="Patch\Patch_MechaDrone.cs" />
     <Compile Include="Patch\Patch_PlayerController.cs" />
