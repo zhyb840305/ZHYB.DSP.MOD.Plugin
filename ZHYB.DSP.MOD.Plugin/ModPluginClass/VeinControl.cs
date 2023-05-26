@@ -63,7 +63,7 @@
 				int groupIndex=factory.AddVeinGroup(Pair.Key,pos);
 				int CurrentCount;
 				if(CheatMode)
-					CurrentCount=EVeinType.Oil==Pair.Key ? ( VEINPERCOUNT*1000/60 ) : VEINPERCOUNT*1000;
+					CurrentCount=EVeinType.Oil==Pair.Key ? ( VEINPERCOUNT*1000/4 ) : VEINPERCOUNT*1000;
 				else
 					CurrentCount=EVeinType.Oil==Pair.Key ? ( Pair.Value/60 ) : Pair.Value;
 				if(CurrentCount==0)

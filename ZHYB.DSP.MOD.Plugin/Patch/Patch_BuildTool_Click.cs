@@ -121,8 +121,14 @@ namespace Patch
 	{
 		public const int BigUpgradeSize = 50;
 
-		[HarmonyPrefix]
-		[HarmonyPatch("DeterminePreviews")]
+		[HarmonyPostfix, HarmonyPatch("_OnOpen")]
+		public static void Patch_OnOpen(BuildTool_Upgrade __instance)
+		{
+			__instance.cursorType=1;
+			__instance.chainReaction=true;
+		}
+
+		[HarmonyPrefix, HarmonyPatch("DeterminePreviews")]
 		public static bool Patch_DeterminePreviews(BuildTool_Upgrade __instance)
 		{
 			int _overlappedCount=( int )Traverse.Create(__instance).Field("_overlappedCount").GetValue() ;

@@ -18,12 +18,13 @@ namespace Patch
 	internal class Patch_GameHistoryData
 	{
 		[HarmonyPostfix, HarmonyPatch("Init"), HarmonyPatch("SetForNewGame"), HarmonyPatch("Import")]
+		[HarmonyPrefix, HarmonyPatch("Export")]
 		public static void PatchGameHistoryData(GameHistoryData __instance)
 		{
 			if(!ModConfig.CheatMode.Value)
 				return;
-			__instance.localStationExtraStorage=100000-5000;
-			__instance.remoteStationExtraStorage=500000-10000;
+			__instance.localStationExtraStorage=100000;
+			__instance.remoteStationExtraStorage=500000;
 			__instance.logisticShipCarries=5000;
 			__instance.logisticDroneCarries=500;
 			__instance.logisticCourierCarries=100;
