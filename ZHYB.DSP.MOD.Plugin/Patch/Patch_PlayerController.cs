@@ -3,17 +3,22 @@
 	[HarmonyPatch(typeof(PlayerController))]
 	internal class Patch_PlayerController
 	{
+		public static bool EnableAutoBuild = true;
+
 		[HarmonyPostfix, HarmonyPatch("GetInput")]
 		public static void Postfix_GetInput(PlayerController __instance)
 		{
-			Dictionary<int,Dictionary<int,Dictionary<int,int>>> bbbb=new();
+			if(!EnableAutoBuild)
+			{
+				return;
+			}
 			var prebuildPool=__instance.actionBuild?.player?.factory?.prebuildPool;
 			var player=GameMain.mainPlayer;
 			if(prebuildPool==null||UIGame.viewMode!=EViewMode.Build||player==null)
 				return;
 			bool flag = false;
 			int preCount=0;
-			Vector3 vector3 = new Vector3(0.0f, 0.0f, 0.0f);
+			Vector3 vector3 = player.position;
 			foreach(PrebuildData prebuildData in prebuildPool)
 			{
 				if(prebuildData.id!=0&&( prebuildData.itemRequired==0||prebuildData.itemRequired<=player.package.GetItemCount(prebuildData.protoId) ))
@@ -21,7 +26,7 @@
 					preCount++;
 					var a= prebuildData.pos;
 					var b= player.position;
-					if(Maths.VectorSqrDistance(ref a,ref b)>GameMain.mainPlayer.mecha.buildArea/10)
+					if(Maths.VectorSqrDistance(ref a,ref b)>1000)
 					{
 						flag=true;
 						vector3=prebuildData.pos;
